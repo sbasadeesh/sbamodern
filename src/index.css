@@ -1,0 +1,25 @@
+@import "tailwindcss";
+
+/* index.css or App.css */
+
+
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #fff;
+  color: #111;
+  line-height: 1.6;
+}
+
+/* Elegant serif for all headings */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'DM Serif Display', serif;
+  font-weight: normal;
+  /* color: #111; */
+}
+
+/* Optional: Adjust heading sizes */
+
+
+
+
