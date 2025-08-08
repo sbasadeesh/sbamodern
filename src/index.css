@@ -9,6 +9,7 @@ body {
   background-color: #fff;
   color: #111;
   line-height: 1.6;
+  /* cursor: url("./cursor.png"), auto; */
 }
 
 /* Elegant serif for all headings */

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Tail Cursor Animation</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <h1>Move your mouse around</h1>
+
+  <!-- Tail elements -->
+  <div class="cursor-tail"></div>
+  <div class="cursor-tail"></div>
+  <div class="cursor-tail"></div>
+  <div class="cursor-tail"></div>
+  <div class="cursor-tail"></div>
+
+  <script>
+
+    const tails = document.querySelectorAll(".cursor-tail");
+const positions = Array(tails.length).fill({ x: 0, y: 0 });
+
+window.addEventListener("mousemove", (e) => {
+  positions.unshift({ x: e.clientX, y: e.clientY });
+  positions.pop();
+
+  tails.forEach((tail, index) => {
+    const { x, y } = positions[index];
+    tail.style.transform = `translate(${x - 5}px, ${y - 5}px)`;
+  });
+});
+
+  </script>
+
+  <style>
+    * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  background-color: white;
+  color: black;
+  font-family: sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  cursor: none; /* Hide default cursor */
+}
+
+.cursor-tail {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: black;
+  border-radius: 50%;
+  pointer-events: none;
+  will-change: transform;
+  transition: transform 0.1s linear;
+}
+
+  </style>
+</body>
+</html>

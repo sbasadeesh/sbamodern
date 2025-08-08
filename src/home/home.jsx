@@ -1,11 +1,14 @@
 import React, { useEffect, useRef, useState } from 'react';
-import herosectionvideo from "./nature.mp4"
+import herosectionvideo from "./hero_section_video.mp4"
 import VideoCarousel from './carousal';
 import AOS from "aos";
 import "aos/dist/aos.css";
 import Ourservices from './ourservices';
 import CountUp from 'react-countup';
 import AutomationSection from './Automation';
+import venkatesh from "./venkatesh.jpg"
+import PartnersSection from './Partners';
+import Shedule from '../shedule/Shedule';
 
 function Home(){
 
@@ -37,13 +40,36 @@ function Home(){
   };
   
  const videoRef = useRef(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  useEffect(() => {
+    const video = videoRef.current;
+
+    const handlePlay = () => setIsPlaying(true);
+    const handlePause = () => setIsPlaying(false);
+
+    if (video) {
+      video.addEventListener('play', handlePlay);
+      video.addEventListener('pause', handlePause);
+    }
+
+    // Cleanup
+    return () => {
+      if (video) {
+        video.removeEventListener('play', handlePlay);
+        video.removeEventListener('pause', handlePause);
+      }
+    };
+  }, []);
 
   const handlePlayPause = () => {
-    if (videoRef.current) {
-      if (videoRef.current.paused) {
-        videoRef.current.play();
+    const video = videoRef.current;
+    if (video) {
+      if (video.paused) {
+        video.play();
       } else {
-        videoRef.current.pause();
+        video.pause();
       }
     }
   };
@@ -72,15 +98,48 @@ const [showPopup, setShowPopup] = useState(false);
         }));
       };
     
-      const handleSubmit = () => {
+      const handleSubmit = async () => {
         if (formData.name && formData.email) {
-          alert("Demo booked successfully!");
-          setShowPopup(false);
-          setFormData({ name: '', email: '', company: '', message: '' });
+          setIsSubmitting(true);
+          
+          try {
+            // Use environment variable or relative path for production
+            const response = await fetch('http://localhost:5000/demo/send-mail', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify(formData),
+            });
+    
+            if (response.ok) {
+              const result = await response.json();
+              alert("Demo booked successfully! We'll contact you soon.");
+              setShowPopup(false);
+              // Fixed: Reset all form fields consistently
+              setFormData({ 
+                name: '', 
+                email: '', 
+                company: '', 
+                message: '',
+                phone:'' 
+              });
+            } else {
+              const errorData = await response.json();
+              throw new Error(errorData.message || 'Failed to send request');
+            }
+          } catch (error) {
+            console.error('Error sending form:', error);
+            alert("Sorry, there was an error sending your request. Please try again later or contact us directly.");
+          } finally {
+            setIsSubmitting(false);
+          }
         } else {
           alert("Please fill in required fields (Name and Email)");
         }
       };
+
+  
     
       const closePopup = () => {
         setShowPopup(false);
@@ -88,23 +147,39 @@ const [showPopup, setShowPopup] = useState(false);
     
     return(
         <>
-   <section className="min-h-screen flex items-center justify-center text-center pt-10 px-4 sm:px-6 lg:px-8 bg-black">
-  <div data-aos="fade-up" className="max-w-3xl mx-auto">
-    <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white tracking-tight mb-4">
+<section className=" flex items-center justify-center text-center pt-50 px-4 sm:px-6 lg:px-8 bg-black pb-20">
+  
+  <div data-aos="fade-up" className="max-w-4xl mx-auto">
+    <h1 className="text-5xl sm:text-6xl md:text-7xl font-extrabold text-white tracking-tight leading-tight mb-6">
       Automate The <span className="text-red-500">Mundane</span>
     </h1>
-    <p className="text-base sm:text-lg md:text-xl mb-6 text-gray-300 max-w-xl mx-auto">
-      Elevate The <span className="text-red-400">Human Potential</span>
+    <p className="text-lg sm:text-xl md:text-2xl mb-8 text-gray-300">
+      Elevate <span className="text-red-400">Human Potential</span>
     </p>
-    <button
-      onClick={() => setShowPopup(true)}
-      className="relative cursor-pointer inline-block px-6 py-3 font-medium group overflow-hidden border-2 border-red-500 text-white rounded bg-black hover:bg-red-500 transition-all duration-300"
-    >
-      <span className="absolute inset-0 w-0 bg-red-500 transition-all duration-500 ease-out group-hover:w-full"></span>
-      <span className="relative z-10 group-hover:text-white">Request a Demo</span>
-    </button>
+    {/* <Shedule />  */}
+    <button onClick={() => setShowPopup(true)} className="bg-gradient-to-r cursor-pointer from-red-500 to-red-400 text-white font-semibold py-4 px-8 rounded-lg hover:from-red-600 hover:to-red-500 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-red-500/25 flex items-center space-x-2 mx-auto">
+      <span>Schedule a Strategy Session</span>
+      {/* <ArrowRight className="w-5 h-5" /> */}
+  </button>
   </div>
 </section>
+
+<div
+      // data-aos="fade-up"
+      className="video-container relative w-full max-w-[1300px] mx-auto aspect-[16/9]"
+    >
+      <video ref={videoRef} className="w-full h-full object-cover">
+        <source src={herosectionvideo} type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+      <div
+        className="play-text absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-[1.5rem] bg-[rgba(121,119,119,0.7)] py-2 px-4 rounded-md cursor-pointer transition-colors duration-300 hover:bg-[rgba(103,102,102,0.9)]"
+        onClick={handlePlayPause}
+      >
+        <i className={`fa-solid ${isPlaying ? 'fa-pause' : 'fa-play'}`}></i>
+      </div>
+    </div>
+    <br />
   <style jsx>{`
         @keyframes fadeIn {
           from {
@@ -137,10 +212,10 @@ const [showPopup, setShowPopup] = useState(false);
         {/* Demo Request Popup */}
       {showPopup && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4 animate-fadeIn">
-          <div className=" rounded-lg p-6 w-full max-w-md relative animate-scaleIn transform">
+          <div className="bg-black rounded-lg p-6 w-full max-w-md relative animate-scaleIn transform shadow-2xl">
             <button
               onClick={closePopup}
-              className="absolute top-4 right-4 text-gray-500 hover:text-gray-700 text-xl"
+              className="absolute top-4 right-4 text-gray-400 hover:text-red-500 text-xl transition-colors duration-200"
             >
               ×
             </button>
@@ -157,7 +232,7 @@ const [showPopup, setShowPopup] = useState(false);
                   name="name"
                   value={formData.name}
                   onChange={handleInputChange}
-                  className="w-full px-3 py-2 border border-gray-100  text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border border-gray-300 text-gray-100  rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-colors"
                   required
                 />
               </div>
@@ -171,8 +246,22 @@ const [showPopup, setShowPopup] = useState(false);
                   name="email"
                   value={formData.email}
                   onChange={handleInputChange}
-                  className="w-full px-3 py-2 border text-white border-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border text-gray-100  border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-colors"
                   required
+                />
+              </div>
+              
+              <div>
+                <label className="block text-sm font-medium text-gray-100 mb-1">
+                  Phone Number
+                </label>
+                <input
+                  type="tel"
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleInputChange}
+                  className="w-full px-3 py-2 border text-gray-100  border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-colors"
+                  // placeholder="Contact Number"
                 />
               </div>
               
@@ -185,7 +274,7 @@ const [showPopup, setShowPopup] = useState(false);
                   name="company"
                   value={formData.company}
                   onChange={handleInputChange}
-                  className="w-full px-3 py-2 border text-white border-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border text-gray-100 border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-colors"
                 />
               </div>
               
@@ -198,7 +287,7 @@ const [showPopup, setShowPopup] = useState(false);
                   value={formData.message}
                   onChange={handleInputChange}
                   rows={3}
-                  className="w-full px-3 py-2 text-white border border-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 text-gray-100 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-colors resize-none"
                   placeholder="Tell us about your requirements..."
                 />
               </div>
@@ -207,16 +296,16 @@ const [showPopup, setShowPopup] = useState(false);
                 <button
                   type="button"
                   onClick={closePopup}
-                  className="flex-1 px-4 py-2 border border-gray-100 text-gray-100 rounded-md hover:bg-gray-50"
+                  className="flex-1 px-4 py-2 border border-gray-300 text-gray-800 cursor-pointer bg-white rounded-md hover:bg-gray-50 transition-colors duration-200"
                 >
                   Cancel
                 </button>
                 <button
                   type="button"
                   onClick={handleSubmit}
-                  className="flex-1 px-4 py-2 bg-gray-600 text-white rounded-md hover:bg-blue-700"
+                  className="flex-1 px-4 py-2 bg-red-600 text-white rounded-md cursor-pointer hover:bg-red-700 focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition-colors duration-200"
                 >
-                  Submit Request
+                  Request
                 </button>
               </div>
             </div>
@@ -224,79 +313,97 @@ const [showPopup, setShowPopup] = useState(false);
         </div>
       )}
 
-        <br /><br /><br />
-        <div data-aos="fade-up" className="video-container relative w-full max-w-[1300px] mx-auto aspect-[16/9]">
-            <video ref={videoRef} className="w-full h-full object-cover">
-                <source src={herosectionvideo} type="video/mp4" />
-                Your browser does not support the video tag.
-            </video>
-            <div
-                className="play-text absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-[1.5rem] bg-[rgba(121,119,119,0.7)] py-2 px-4 rounded-md cursor-pointer transition-colors duration-300 hover:bg-[rgba(103,102,102,0.9)]"
-                onClick={handlePlayPause}
-            >
-                <i className={`fa-solid ${videoRef.current?.paused ? 'fa-play' : 'fa-pause'}`}></i>
-      </div>
-    </div>
+      
 
   
 <AutomationSection />
-        <br /><br /><br />
-        {/* <Ourservices /> */}
-        <br /><br /><br />
+       <br />
+        <div data-aos="fade-up">
+    <PartnersSection />
+    
+    {/* <VideoCarousel/> */}
+    
 
-      <div className="py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div
-            className="text-center mb-12"
-            data-aos="fade-up"
-          >
-            <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold text-white text-center mb-2">
-              Our Impact
-            </h2>
-          </div>
+        </div>
 
-          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            {/* Feature 1 */}
-            <div className="p-6 shadow hover:shadow-md transition border-b border-[#1F1D1A] lg:border-b-0 lg:border-r" data-aos="fade-up">
-              <h3 className="text-xl sm:text-2xl md:text-3xl font-semibold text-white text-center mb-2">
-                <ImpactCard value={300} suffix="+" duration={5}  delay={0.1} />
-              </h3>
-              <p className="text-base sm:text-lg md:text-xl text-white text-center">
-                Customers
+        <section className="max-w-7xl mx-auto px-4 py-16" data-aos="fade-up">
+        <h2 className="text-3xl md:text-4xl font-semibold text-center mb-12 text-white">
+          Engineered for Your Enterprise
+        </h2>
+
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {[
+            "Bespoke Solution Architecture",
+            "Dedicated Strategy & Support",
+            "Enterprise-Wide Integration",
+            "Uncompromising Security & Privacy",
+            "Real-Time Analytics",
+            "Scalable Data Infrastructure",
+          ].map((title, idx) => (
+            <div
+              key={idx}
+              className="bg-neutral-900 p-6 rounded-xl"
+              data-aos="fade-up"
+              data-aos-delay={idx * 100}
+              >
+              <h3 className="text-lg font-semibold mb-2 text-white">{title}</h3>
+              <p className="text-sm text-gray-300">
+                {
+                  {
+                    "Bespoke Solution Architecture":
+                      "We don't offer a one-size-fits-all product. We architect and configure solutions precisely to your team's workflows, eliminating friction and delivering on your specific outcomes..",
+                    "Dedicated Strategy & Support":
+                      "Your success is our core metric. From the initial discovery call to ongoing optimization, you get a dedicated team of experts committed to helping you achieve your goals.",
+                    "Enterprise-Wide Integration":
+                      "Our solutions are designed to be the connective tissue for your operations. We unify disparate systems and break down data silos across any department or industry.",
+                    "Uncompromising Security & Privacy":
+                      "Built on an enterprise-grade security framework that puts your data first. We provide robust protection, and your proprietary information is safeguarded.",
+                    "Real-Time Analytics":
+                      "Analyze data in real-time to uncover insights, detect anomalies, and respond instantly to changing business conditions.",
+                    "Scalable Data Infrastructure":
+                    "Leverage cloud-native and hybrid data platforms to store, process, and serve AI workloads at scale with high performance.",
+                  }[title]
+                }
               </p>
             </div>
+          ))}
+        </div>
+      </section>
 
-            <div className="p-6 shadow hover:shadow-md transition border-b border-[#1F1D1A] lg:border-b-0 lg:border-r" data-aos="fade-up">
-                <h3 className="text-xl sm:text-2xl md:text-3xl font-semibold text-white text-center mb-2">
-                   <ImpactCard value={30} suffix="+" duration={5}  delay={1.0} />
-                </h3>
-                <p className="text-base sm:text-lg md:text-xl text-white text-center">
-                  Years in Market
-                </p>
+        
+        <section className="bg-[#D5D1DB] py-16 px-4" data-aos="fade-up">
+            <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center md:items-start gap-12">
+              
+              {/* Left - Image */}
+              <div className="w-full md:w-1/2 flex justify-center">
+                <img 
+                  src={venkatesh}
+                  alt="Person smiling" 
+                  className="rounded-lg shadow-lg max-w-full h-auto"
+                />
               </div>
 
-            <div className="p-6 shadow hover:shadow-md transition border-b border-[#1F1D1A] lg:border-b-0 lg:border-r" data-aos="fade-up">
-                <h3 className="text-xl sm:text-2xl md:text-3xl font-semibold text-white text-center mb-2">
-                  <ImpactCard value="Best"  delay={2.0} />
-                </h3>
-                <p className="text-base sm:text-lg md:text-xl text-white text-center">
-                   Predictive Support
+              {/* Right - Quote */}
+              <div className="w-full md:w-1/2 text-left">
+                <p className="text-2xl md:text-3xl font-serif text-black leading-relaxed mb-6">
+                  “In the modern workplace, repetitive tasks like data entry and information retrieval
+                  hinder employees from engaging in strategic and creative aspects of their roles.”
                 </p>
+                <p className="font-medium text-black">Venkatesh A</p>
+                <p className="text-gray-700 text-sm mb-6">CGO</p>
+{/* "relative cursor-pointer inline-block px-6 py-3 font-medium group overflow-hidden border-2 border-red-500 text-white rounded bg-black hover:bg-red-500 transition-all duration-300 */}
+               <button className="bg-gradient-to-r cursor-pointer from-red-500 to-red-400 text-white font-semibold py-4 px-8 rounded-lg hover:from-red-600 hover:to-red-500 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-red-500/25 flex items-center space-x-2 mx-auto">
+                           <span>Get Started Today</span>
+                           {/* <ArrowRight className="w-5 h-5" /> */}
+                         </button>
               </div>
+            </div>
+          </section>
 
-          </div>
-        </div>
-      </div>
 
-        <br /><br /><br />
 
-        <div data-aos="fade-up">
-    <VideoCarousel/>
-
-        </div>
-        <br />
               {/* Closing CTA */}
-      <section className="bg-[#D5D1DB] py-24 text-center" data-aos="fade-up">
+      {/* <section className="bg-[#D5D1DB] py-24 text-center" data-aos="fade-up">
         <div className="max-w-3xl mx-auto px-4">
           <h2 className="text-2xl sm:text-3xl md:text-3xl  font-medium text-black mb-8">
             Empower with Data, Accelerate with Agility
@@ -307,7 +414,7 @@ const [showPopup, setShowPopup] = useState(false);
             <span className="relative z-10 group-hover:text-black">Request a Demo</span>
           </button>
         </div>
-      </section>
+      </section> */}
         </>
     )
 }

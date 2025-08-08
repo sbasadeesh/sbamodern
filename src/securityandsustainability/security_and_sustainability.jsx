@@ -2,8 +2,6 @@ import { useState, useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
-import cybersecurity from "./cybersecurity.gif";
-import green_technology from "./green_technology.gif";
 import ITAutomationPlatform from "./Whatwedo";
 import SolutionsSection from "./solutions";
 
@@ -79,23 +77,21 @@ function Security_and_sustainability() {
         }
       `}</style>
       {/* Hero Section */}
-<section className="min-h-screen flex items-center justify-center text-center pt-10 px-4 sm:px-6 lg:px-8 bg-black">
-  <div data-aos="fade-up" className="max-w-3xl mx-auto">
-    <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white tracking-tight mb-4">
-      Security and  <span className="text-red-500">Sustainability</span>
-    </h1>
-    <p className="text-base sm:text-lg md:text-xl mb-6 text-gray-300 max-w-xl mx-auto">
-      Secure Enterprise <span className="text-red-400">Computing</span>
-    </p>
-    <button
-      onClick={() => setShowPopup(true)}
-      className="relative cursor-pointer inline-block px-6 py-3 font-medium group overflow-hidden border-2 border-red-500 text-white rounded bg-black hover:bg-red-500 transition-all duration-300"
-    >
-      <span className="absolute inset-0 w-0 bg-red-500 transition-all duration-500 ease-out group-hover:w-full"></span>
-      <span className="relative z-10 group-hover:text-white">Request a Demo</span>
-    </button>
-  </div>
-</section>
+  <section className=" flex items-center justify-center text-center pt-50 px-4 sm:px-6 lg:px-8 bg-black pb-20">
+          <div data-aos="fade-up" className="max-w-4xl mx-auto">
+            <h1 className="text-5xl sm:text-6xl md:text-7xl font-extrabold text-white tracking-tight leading-tight mb-6">
+              Security and<span className="text-red-500"> Sustainability</span>
+            </h1>
+            <p className="text-lg sm:text-xl md:text-2xl mb-8 text-gray-300">
+              Secure Enterprise<span className="text-red-400"> Computing</span>
+            </p>
+            <button className="bg-gradient-to-r cursor-pointer from-red-500 to-red-400 text-white font-semibold py-4 px-8 rounded-lg hover:from-red-600 hover:to-red-500 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-red-500/25 flex items-center space-x-2 mx-auto">
+              <span>Schedule a Strategy Session</span>
+              {/* <ArrowRight className="w-5 h-5" /> */}
+            </button>
+              
+          </div>
+        </section>
 
 
       {/* Demo Request Popup */}

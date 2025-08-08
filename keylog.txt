@@ -1,0 +1,19 @@
+hello how area yousssdkdkndmnollsjj dhfhjdfjdiis djjduud pa super aacharayama and intresting ga irruku
+
+KEYLOG:
+
+KEYLOG BY CHARACTER:
+
+
+KEYLOG BY SETENCE:
+
+ vum
+itha android la run aaguma antha .py file
+ok keylog maari veara ethavathu
+ippa defend pannalam ennoda system la enthanaha ip vanthuttu or access apnnitu poirukku nu paaka mudiyuma to find suspicious  ip
+cmd
+netstat -ano
+enakku established, listening, timewait apdinu katut5040
+but one port pota ethum kaatala
+
+l

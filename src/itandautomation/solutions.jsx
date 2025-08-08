@@ -1,4 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
+import workflow_automation from "./workflow_automation.jpg"
+import process_optimisation from "./process_optimisation.jpg"
+import system_integration from "./system_integration.jpg"
 import { 
   Brain, 
   Database, 
@@ -27,7 +30,7 @@ const SolutionsSection = () => {
       title: "Workflow Automation",
       description: "Automate repetitive tasks, reduce human error, and streamline your day-to-day business operations. Our automation solutions adapt to your unique processes and boost operational speed.",
       features: ["Document Processing ", "Custom Task Bots", "Email & Message Handling", "Custom Automation Model"],
-      image: "https://images.unsplash.com/photo-1555949963-aa79dcee981c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+      image: workflow_automation,
       imageAlt: "Machine Learning Models",
       reverse: false
     },
@@ -37,7 +40,7 @@ const SolutionsSection = () => {
       title: "System Integration",
       description: "Connect disconnected systems, apps, and platforms into one cohesive environment. We ensure seamless data flow and interoperability to support better decision-making and collaboration.",
       features: ["Data Sync Across Tools", "API-Based Automation", "AI-Powered Connectors", "Custom Integration Workflows"],
-      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+      image: system_integration,
       imageAlt: "AI Integrations Dashboard",
       reverse: true
     },
@@ -47,7 +50,7 @@ const SolutionsSection = () => {
       title: "Process Optimization",
       description: "Improve efficiency, reduce waste, and enhance performance across all operations. Our optimization tools uncover bottlenecks and align your processes with business goals.",
       features: ["Continuous Improvement", "Task Prioritization", "Identify Bottlenecks", "Smart Recommendations"],
-      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+      image: process_optimisation,
       imageAlt: "AI Integrations Dashboard",
       reverse: false 
     },

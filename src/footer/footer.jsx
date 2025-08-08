@@ -41,7 +41,7 @@ const Footer = () => {
     <div className="min-w-[140px]">
       <h3 className="text-gray-400 text-sm mb-2">Resources</h3>
       <ul className="list-none space-y-1">
-        <li><a href="About-us" className="text-white text-sm hover:underline">About us</a></li>
+        <li><a href="Company" className="text-white text-sm hover:underline">About us</a></li>
         <li><a href="our-stories" className="text-white text-sm hover:underline">Our Stories</a></li>
       </ul>
     </div>
@@ -50,7 +50,7 @@ const Footer = () => {
     <div className="min-w-[140px]">
       <h3 className="text-gray-400 text-sm mb-2">Follow</h3>
       <ul className="list-none space-y-1">
-        <li><a href="https://www.linkedin.com/company/sba-info-solutions" className="text-gray-400 text-sm hover:text-white">LinkedIn</a></li>
+        <li><a href="https://www.linkedin.com/company/sba-info-solutions" target='_blank' className="text-gray-400 text-sm hover:text-white">LinkedIn</a></li>
       </ul>
     </div>
   </div>

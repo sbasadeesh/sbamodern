@@ -94,7 +94,7 @@ const CoreValuesSection = () => {
         </div>
 
         {/* Values Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 cursor-pointer">
           {coreValues.map((value, index) => (
             <div
               key={value.id}
@@ -182,9 +182,9 @@ const CoreValuesSection = () => {
         {/* Bottom Section */}
         <div className="text-center mt-20">
           <div className="inline-flex items-center space-x-4 mb-6">
-            <div className="w-3 h-3 bg-red-500 rounded-full animate-pulse"></div>
+            {/* <div className="w-3 h-3 bg-red-500 rounded-full animate-pulse"></div>
             <div className="w-2 h-2 bg-white rounded-full animate-pulse" style={{animationDelay: '0.3s'}}></div>
-            <div className="w-3 h-3 bg-gray-600 rounded-full animate-pulse" style={{animationDelay: '0.6s'}}></div>
+            <div className="w-3 h-3 bg-gray-600 rounded-full animate-pulse" style={{animationDelay: '0.6s'}}></div> */}
           </div>
           
           <p className="text-gray-500 text-lg">These values are the foundation of everything we do</p>

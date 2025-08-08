@@ -1,304 +1,518 @@
-import { useEffect, useState } from "react";
+import React, { useState, useEffect } from 'react';
 import AOS from "aos";
 import "aos/dist/aos.css";
+import {
+  Briefcase,
+  MapPin,
+  Clock,
+  Users,
+  TrendingUp,
+  Heart,
+  Coffee,
+  Zap,
+  Target,
+  Award,
+  ChevronRight,
+  Search,
+  Filter,
+  DollarSign,
+  Calendar,
+  Building,
+  Globe,
+  Star,
+  Play,
+  ArrowRight,
+  CheckCircle
+} from 'lucide-react';
 
-function Carrers(){
+// Sample job data - replace with your API data
+const sampleJobs = [
+  {
+    id: 1,
+    title: "Senior Frontend Developer",
+    department: "Engineering",
+    location: "Remote / San Francisco",
+    type: "Full-time",
+    experience: "3-5 years",
+    salary: "$120K - $160K",
+    description: "Join our frontend team to build cutting-edge user interfaces using React, TypeScript, and modern web technologies.",
+    requirements: ["React", "TypeScript", "CSS", "GraphQL", "Testing"],
+    posted: "2 days ago"
+  },
+  {
+    id: 2,
+    title: "Product Designer",
+    department: "Design",
+    location: "New York",
+    type: "Full-time", 
+    experience: "2-4 years",
+    salary: "$90K - $130K",
+    description: "Create beautiful and intuitive user experiences for our platform used by millions of users worldwide.",
+    requirements: ["Figma", "User Research", "Prototyping", "Design Systems"],
+    posted: "1 week ago"
+  },
+  {
+    id: 3,
+    title: "Data Analyst",
+    department: "Analytics",
+    location: "Remote",
+    type: "Full-time",
+    experience: "1-3 years", 
+    salary: "$80K - $110K",
+    description: "Analyze complex datasets to drive business decisions and improve our products through data-driven insights.",
+    requirements: ["SQL", "Python", "Tableau", "Statistics"],
+    posted: "3 days ago"
+  }
+];
 
-     const [showPopup, setShowPopup] = useState(false);
-         const [formData, setFormData] = useState({
-           name: '',
-           email: '',
-           company: '',
-           message: ''
-         });
-       
-         useEffect(() => {
-           AOS.init({
-                 duration: 1000,
-                 once: true,
-               });
-         }, []);
-       
-         const handleInputChange = (e) => {
-           const { name, value } = e.target;
-           setFormData(prev => ({
-             ...prev,
-             [name]: value
-           }));
-         };
-       
-         const handleSubmit = () => {
-           if (formData.name && formData.email) {
-             alert("Demo booked successfully!");
-             setShowPopup(false);
-             setFormData({ name: '', email: '', company: '', message: '' });
-           } else {
-             alert("Please fill in required fields (Name and Email)");
-           }
-         };
-       
-         const closePopup = () => {
-           setShowPopup(false);
-         };
-       
+const benefits = [
+  {
+    icon: <Heart className="w-6 h-6" />,
+    title: "Health & Wellness",
+    description: "Comprehensive health insurance, mental health support, and wellness programs"
+  },
+  {
+    icon: <Coffee className="w-6 h-6" />,
+    title: "Work-Life Balance", 
+    description: "Flexible working hours, remote work options, and unlimited PTO"
+  },
+  {
+    icon: <TrendingUp className="w-6 h-6" />,
+    title: "Career Growth",
+    description: "Learning stipend, mentorship programs, and clear career progression paths"
+  },
+  {
+    icon: <Award className="w-6 h-6" />,
+    title: "Recognition",
+    description: "Performance bonuses, employee appreciation programs, and achievement awards"
+  },
+  {
+    icon: <Users className="w-6 h-6" />,
+    title: "Team Culture",
+    description: "Inclusive environment, team building activities, and collaborative workspace"
+  },
+  {
+    icon: <Zap className="w-6 h-6" />,
+    title: "Innovation",
+    description: "20% time for personal projects, hackathons, and cutting-edge technology"
+  }
+];
+
+const companyStats = [
+  { label: "Team Members", value: "250+" },
+  { label: "Countries", value: "12" },
+  { label: "Years of Excellence", value: "8" },
+  { label: "Client Satisfaction", value: "98%" }
+];
+
+const CareersPage = () => {
+  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedDepartment, setSelectedDepartment] = useState('All');
+  const [selectedJob, setSelectedJob] = useState(null);
+  const [filteredJobs, setFilteredJobs] = useState([]);
+  const [allJobs, setAllJobs] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    resume: null,
+  });
+
+  const departments = ['All', 'Engineering', 'Product', 'Design', 'Marketing', 'Analytics'];
+
+  // Fetch jobs on component mount
+  useEffect(() => {
+    const fetchJobs = async () => {
+      try {
+        setLoading(true);
+        // Try to fetch from API, fallback to sample data
+        const res = await fetch('http://localhost:5000/jobs');
+        if (res.ok) {
+          const jobs = await res.json();
+          setAllJobs(jobs);
+          setFilteredJobs(jobs);
+        } else {
+          throw new Error('API not available');
+        }
+      } catch (err) {
+        console.log('Using sample data:', err.message);
+        // Use sample data if API is not available
+        setAllJobs(sampleJobs);
+        setFilteredJobs(sampleJobs);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchJobs();
+  }, []);
+
+  // Filter jobs based on search and department
+  useEffect(() => {
+    let filtered = allJobs;
     
-
-    return(
-        <>
- 
-        {/* Hero Section */}
-<section className="min-h-screen flex items-center justify-center text-center pt-20 px-4">
-  <div data-aos="fade-up">
-    <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight mb-4 text-white">
-      Build Your Future with Us
-    </h1>
-    {/* Uncomment this if needed */}
+    if (searchTerm) {
+      filtered = filtered.filter(job => 
+        job.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        job.department.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+    }
     
-    <p className="text-sm sm:text-base md:text-lg mb-6 max-w-xl mx-auto text-white">
-      Your Vision. Our Expertise. A Smarter Future.
-    </p> 
-   
-  </div>
-</section>
+    if (selectedDepartment !== 'All') {
+      filtered = filtered.filter(job => job.department === selectedDepartment);
+    }
+    
+    setFilteredJobs(filtered);
+  }, [searchTerm, selectedDepartment, allJobs]);
 
-       <style jsx>{`
-        @keyframes fadeIn {
-          from {
-            opacity: 0;
-          }
-          to {
-            opacity: 1;
-          }
-        }
-        
-        @keyframes scaleIn {
-          from {
-            opacity: 0;
-            transform: scale(0.8);
-          }
-          to {
-            opacity: 1;
-            transform: scale(1);
-          }
-        }
-        
-        .animate-fadeIn {
-          animation: fadeIn 0.3s ease-out;
-        }
-        
-        .animate-scaleIn {
-          animation: scaleIn 0.3s ease-out;
-        }
-      `}</style>
+  const handleApply = (job) => {
+    setSelectedJob(job);
+  };
 
-      {/* Demo Request Popup */}
-      {showPopup && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4 animate-fadeIn">
-          <div className=" rounded-lg p-6 w-full max-w-md relative animate-scaleIn transform">
-            <button
-              onClick={closePopup}
-              className="absolute top-4 right-4 text-gray-500 hover:text-gray-700 text-xl"
-            >
-              ×
-            </button>
+  const handleFileChange = (e) => {
+    setFormData({ ...formData, resume: e.target.files[0] });
+  };
+
+  const handleInputChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmitApplication = async () => {
+    if (!formData.name || !formData.email || !formData.phone || !formData.resume) {
+      alert('Please fill all fields and upload resume');
+      return;
+    }
+
+    const data = new FormData();
+    data.append('name', formData.name);
+    data.append('email', formData.email);
+    data.append('phone', formData.phone);
+    data.append('resume', formData.resume);
+    data.append('jobTitle', selectedJob.title);
+
+    try {
+      const res = await fetch('http://localhost:5000/apply-job', {
+        method: 'POST',
+        body: data,
+      });
+
+      const result = await res.json();
+      alert(result.message || 'Application submitted!');
+      setFormData({ name: '', email: '', phone: '', resume: null });
+      setSelectedJob(null);
+    } catch (err) {
+      console.error(err);
+      alert('Failed to submit application.');
+    }
+  };
+
+   // Initialize AOS
+  useEffect(() => {
+    AOS.init({
+      duration: 800, // Animation duration in milliseconds
+      easing: 'ease-in-out', // Easing function
+      once: true, // Animation happens only once
+      mirror: false // Whether elements should animate out while scrolling past
+    });
+  }, []);
+
+  return (
+    <div className="min-h-screen bg-black text-white">
+      {/* Hero Section */}
+      <section className="py-20 relative overflow-hidden" data-aos="fade-up">
+        <div className="absolute inset-0 opacity-5">
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent transform -skew-y-12"></div>
+        </div>
+        
+        <div className="max-w-7xl mx-auto px-6 relative z-10">
+          <div className="text-center">
+            <h1 className="text-6xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent" data-aos="zoom-in">
+              Build Your Future
+            </h1>
+            <p className="text-xl text-gray-400 max-w-3xl mx-auto mb-8" data-aos="fade-up" data-aos-delay="100">
+              Join our innovative team and shape the future of technology. We're looking for passionate individuals who want to make an impact.
+            </p>
+            <div className="w-24 h-1 bg-gradient-to-r from-red-500 to-red-300 mx-auto mb-8" data-aos="fade-up" data-aos-delay="200"></div>
             
-            <h2 className="text-2xl font-bold text-gray-100 mb-4">Join Wih Us</h2>
+            {/* Stats */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-12">
+              {companyStats.map((stat, index) => (
+                <div key={index} className="text-center" data-aos="fade-up" data-aos-delay={300 + index * 100}>
+                  <div className="text-3xl md:text-4xl font-bold text-red-500 mb-2">{stat.value}</div>
+                  <div className="text-gray-400 text-sm">{stat.label}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Job Search Section */}
+      <section className="py-16" data-aos="fade-up">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="mb-12">
+            <h2 className="text-4xl font-bold text-center mb-8" data-aos="fade-up">Open Positions</h2>
             
-            <div className="space-y-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-100 mb-1">
-                  Name *
-                </label>
+            {/* Search and Filter */}
+            <div className="flex flex-col md:flex-row gap-4 mb-8" data-aos="fade-up" data-aos-delay="100">
+              <div className="relative flex-1">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 w-5 h-5" />
                 <input
                   type="text"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleInputChange}
-                  className="w-full px-3 py-2 border border-gray-100  text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  required
+                  placeholder="Search jobs..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="w-full pl-12 pr-4 py-3 bg-gray-900/50 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:border-red-500 focus:outline-none transition-colors duration-300"
                 />
               </div>
               
-              <div>
-                <label className="block text-sm font-medium text-gray-100 mb-1">
-                  Email *
-                </label>
-                <input
-                  type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleInputChange}
-                  className="w-full px-3 py-2 border text-white border-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  required
-                />
+              <div className="relative">
+                <Filter className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 w-5 h-5" />
+                <select
+                  value={selectedDepartment}
+                  onChange={(e) => setSelectedDepartment(e.target.value)}
+                  className="pl-12 pr-8 py-3 bg-gray-900/50 border border-gray-700 rounded-lg text-white focus:border-red-500 focus:outline-none transition-colors duration-300"
+                >
+                  {departments.map(dept => (
+                    <option key={dept} value={dept}>{dept}</option>
+                  ))}
+                </select>
               </div>
-              
-              <div>
-                <label className="block text-sm font-medium text-gray-100 mb-1">
-                  Contact
-                </label>
-                <input
-                  type="text"
-                  name="company"
-                  value={formData.company}
-                  onChange={handleInputChange}
-                  className="w-full px-3 py-2 border text-white border-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
-              </div>
-              
-              <div>
-                <label className="block text-sm font-medium text-gray-100 mb-1">
-                  Experience
-                </label>
-                <input
-                  name="message"
-                  value={formData.message}
-                  onChange={handleInputChange}
-                  rows={3}
-                  className="w-full px-3 py-2 text-white border border-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            </div>
+          </div>
+
+          {/* Loading State */}
+          {loading ? (
+            <div className="text-center py-12">
+              <div className="text-gray-400">Loading positions...</div>
+            </div>
+          ) : (
+            /* Job Listings */
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              {filteredJobs.length === 0 ? (
+                <div className="col-span-full text-center py-12">
+                  <div className="text-gray-400">No positions found matching your criteria.</div>
+                </div>
+              ) : (
+                filteredJobs.map((job) => (
+                  <div
+                    key={job.id}
+                    className="group relative overflow-hidden rounded-2xl backdrop-blur-sm border border-gray-800 hover:border-red-500 transition-all duration-700 p-6"
+                    style={{ 
+                      background: 'linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%)',
+                      
+                    }}
+                    data-aos="fade-up"
+                    data-aos-delay={job.id * 100}
+                  >
+                    <div className="absolute inset-0 bg-gradient-to-br from-red-900/10 to-gray-900/40 opacity-50 group-hover:opacity-70 transition-opacity duration-500"></div>
+                    
+                    <div className="relative z-10">
+                      <div className="flex justify-between items-start mb-4">
+                        <div>
+                          <h3 className="text-xl font-bold text-white group-hover:text-red-100 transition-colors duration-300 mb-2">
+                            {job.title}
+                          </h3>
+                          <div className="flex flex-wrap gap-2 text-sm text-gray-400">
+                            <span className="flex items-center gap-1">
+                              <Building className="w-4 h-4" />
+                              {job.department}
+                            </span>
+                            <span className="flex items-center gap-1">
+                              <MapPin className="w-4 h-4" />
+                              {job.location}
+                            </span>
+                            <span className="flex items-center gap-1">
+                              <Clock className="w-4 h-4" />
+                              {job.type}
+                            </span>
+                          </div>
+                        </div>
+                        <div className="text-right">
+                          {job.salary && <div className="text-red-400 font-semibold">{job.salary}</div>}
+                          <div className="text-gray-500 text-sm">{job.experience}</div>
+                        </div>
+                      </div>
+                      
+                      <p className="text-gray-300 mb-4 text-sm leading-relaxed">
+                        {job.description}
+                      </p>
+                      
+                      <div className="flex flex-wrap gap-2 mb-4">
+                        {job.requirements.slice(0, ).map((req, index) => (
+                          <span key={index} className="px-3 py-1 bg-red-900/30 text-red-300 rounded-full text-xs">
+                            {req}
+                          </span>
+                        ))}
+                        {/* {job.requirements.length > 3 && (
+                          <span className="px-3 py-1 bg-gray-800 text-gray-400 rounded-full text-xs">
+                            +{job.requirements.length - 3} more
+                          </span>
+                        )} */}
+                      </div>
+                      
+                      <div className="flex justify-between items-center">
+                        <span className="text-gray-500 text-sm">{job.posted}</span>
+                        <button
+                          onClick={() => handleApply(job)}
+                          className="bg-gradient-to-r cursor-pointer from-red-500 to-red-400 text-white px-6 py-2 rounded-lg hover:from-red-600 hover:to-red-500 transition-all duration-300 transform hover:scale-105 flex items-center gap-2 text-sm font-semibold"
+                        >
+                          Apply Now
+                          <ArrowRight className="w-4 h-4" />
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                ))
+              )}
+            </div>
+          )}
+        </div>
+      </section>
+
+      {/* Benefits Section */}
+      <section className="py-16 bg-gray-900/20">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold mb-4">Why Work With Us?</h2>
+            <p className="text-gray-400 max-w-2xl mx-auto">
+              We believe in creating an environment where our team can thrive, innovate, and grow together.
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {benefits.map((benefit, index) => (
+              <div
+                key={index}
+                className="group relative overflow-hidden cursor-pointer rounded-2xl backdrop-blur-sm border border-gray-800 hover:border-red-500 transition-all duration-700 p-6"
+                style={{ 
+                  background: 'linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%)'
+                }}
+              >
+                <div className="absolute inset-0 bg-gradient-to-br from-red-900/10 to-gray-900/40 opacity-50 group-hover:opacity-70 transition-opacity duration-500"></div>
+                
+                <div className="relative z-10 text-center">
+                  <div className="bg-gradient-to-r from-red-500 to-red-400 p-4 rounded-xl w-16 h-16 mx-auto mb-4 shadow-lg transform group-hover:scale-110 transition-transform duration-300">
+                    <div className="text-white flex items-center justify-center h-full">
+                      {benefit.icon}
+                    </div>
+                  </div>
                   
-                />
+                  <h3 className="text-lg font-bold text-white group-hover:text-red-100 transition-colors duration-300 mb-3">
+                    {benefit.title}
+                  </h3>
+                  
+                  <p className="text-gray-400 text-sm leading-relaxed">
+                    {benefit.description}
+                  </p>
+                </div>
               </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Culture Section */}
+      {/* <section className="py-16">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="text-4xl font-bold mb-6">Our Culture</h2>
+              <p className="text-gray-400 mb-6 leading-relaxed">
+                We foster an inclusive, collaborative environment where innovation thrives. Our team is our greatest asset, and we invest in creating a workplace where everyone can do their best work.
+              </p>
               
-              <div className="flex gap-3 pt-2">
-                <button
-                  type="button"
-                  onClick={closePopup}
-                  className="flex-1 px-4 py-2 border border-gray-100 text-gray-100 rounded-md hover:bg-gray-50"
-                >
-                  Cancel
-                </button>
-                <button
-                  type="button"
-                  onClick={handleSubmit}
-                  className="flex-1 px-4 py-2 bg-gray-100 text-black rounded-md hover:bg-gray-500"
-                >
-                  Apply
-                </button>
+              <div className="space-y-4">
+                {[
+                  "Inclusive and diverse workplace",
+                  "Continuous learning opportunities", 
+                  "Flexible work arrangements",
+                  "Open communication and feedback"
+                ].map((item, index) => (
+                  <div key={index} className="flex items-center gap-3">
+                    <CheckCircle className="w-5 h-5 text-red-500" />
+                    <span className="text-gray-300">{item}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+            
+            <div
+              className="relative overflow-hidden rounded-2xl backdrop-blur-sm border border-gray-800 h-64"
+              style={{ background: 'linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%)' }}
+            >
+              <div className="absolute inset-0 bg-gradient-to-br from-red-900/10 to-gray-900/40 opacity-30"></div>
+              <div className="relative z-10 flex justify-center items-center h-full">
+                <div className="text-center">
+                  <Play className="w-16 h-16 text-red-500 mx-auto mb-4" />
+                  <p className="text-white">Company Culture Video</p>
+                </div>
               </div>
             </div>
           </div>
         </div>
+      </section> */}
+
+      {/* Application Modal */}
+      {selectedJob && (
+        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <div className="bg-gray-900 rounded-2xl p-6 max-w-md w-full border border-gray-700">
+            <h3 className="text-xl font-bold mb-4">Apply for {selectedJob.title}</h3>
+            <p className="text-gray-400 mb-6">Submit your details and resume to apply.</p>
+
+            <div className="space-y-4">
+              <input
+                name="name"
+                type="text"
+                placeholder="Full Name"
+                value={formData.name}
+                onChange={handleInputChange}
+                className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:border-red-500 focus:outline-none"
+              />
+              <input
+                name="email"
+                type="email"
+                placeholder="Email Address"
+                value={formData.email}
+                onChange={handleInputChange}
+                className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:border-red-500 focus:outline-none"
+              />
+              <input
+                name="phone"
+                type="tel"
+                placeholder="Phone Number"
+                value={formData.phone}
+                onChange={handleInputChange}
+                className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:border-red-500 focus:outline-none"
+              />
+              <input
+                type="file"
+                accept=".pdf"
+                onChange={handleFileChange}
+                className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-500 file:mr-4 file:py-2 file:px-4 file:border-0 file:text-sm file:bg-red-600 file:text-white hover:file:bg-red-700"
+              />
+            </div>
+
+            <div className="flex gap-3 mt-6">
+              <button
+                onClick={() => setSelectedJob(null)}
+                className="flex-1 px-4 py-2 bg-gray-800 text-white rounded-lg hover:bg-gray-700 transition-colors duration-300"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleSubmitApplication}
+                className="flex-1 px-4 py-2 bg-gradient-to-r from-red-500 to-red-400 text-white rounded-lg hover:from-red-600 hover:to-red-500 transition-all duration-300"
+              >
+                Submit Application
+              </button>
+            </div>
+          </div>
+        </div>
       )}
-
-{/* Why Work With Us Section */}
-<section className="py-16" data-aos="fade-up">
-  <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-gray-100">
-    <h2 className="text-3xl font-bold mb-8">Why Work With Us?</h2>
-    <p className="mb-6 max-w-3xl mx-auto text-lg">
-      At our company, you’re not just joining a team — you’re joining a community driven by innovation, diversity, and a passion for making a difference. We invest in your growth and offer opportunities to build a rewarding career.
-    </p>
-    <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 mt-12">
-      <div>
-        <h3 className="font-semibold mb-2">Growth Opportunities</h3>
-        <p>Access to continuous learning, mentorship, and career development.</p>
-      </div>
-      <div>
-        <h3 className="font-semibold mb-2">Inclusive Culture</h3>
-        <p>We foster diversity and encourage ideas from every voice.</p>
-      </div>
-      <div>
-        <h3 className="font-semibold mb-2">Innovative Projects</h3>
-        <p>Work on cutting-edge technology that shapes the future.</p>
-      </div>
     </div>
-  </div>
-</section>
+  );
+};
 
-<br /><br /><br />
-
-<section className="py-16 bg-[#1F1D1A]" data-aos="fade-up">
-  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div className="text-center mb-12">
-      <h2 className="text-3xl font-bold text-gray-100 sm:text-4xl mb-4" data-aos="fade-up">
-        Current Open Positions
-      </h2>
-      <p className="text-lg text-gray-100" data-aos="fade-up">
-        Join our team and help drive innovation and automation. Explore the roles below and find your perfect fit.
-      </p>
-    </div>
-
-    <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3" data-aos="fade-up">
-      {/* Position 1 */}
-      <div className="p-6 shadow-lg rounded-lg hover:shadow-xl transition transform hover:scale-105">
-        <h3 className="text-lg font-semibold text-gray-100 mb-4">Software Engineer</h3>
-        <p className="text-sm text-gray-100 mb-4">
-          Join our development team to build robust, scalable software solutions that drive business success. Experience with AI and automation preferred.
-        </p>
-        <button onClick={() => setShowPopup(true)} class="relative cursor-pointer inline-block px-6 py-3 font-medium group overflow-hidden border border-white text-white rounded">
-                <span class="absolute inset-0 w-0 bg-gray-200 transition-all duration-500 ease-out group-hover:w-full"></span>
-                <span class="relative z-10 group-hover:text-black">Apply</span>
-            </button>
-      </div>
-
-      {/* Position 2 */}
-      <div className="p-6 shadow-lg rounded-lg hover:shadow-xl transition transform hover:scale-105">
-        <h3 className="text-lg font-semibold text-gray-100 mb-4">Data Scientist</h3>
-        <p className="text-sm text-gray-100 mb-4">
-          We are looking for a Data Scientist to analyze complex data sets and deliver actionable insights. Expertise in machine learning and AI is a plus.
-        </p>
-        <button onClick={() => setShowPopup(true)} class="relative cursor-pointer inline-block px-6 py-3 font-medium group overflow-hidden border border-white text-white rounded">
-                <span class="absolute inset-0 w-0 bg-gray-200 transition-all duration-500 ease-out group-hover:w-full"></span>
-                <span class="relative z-10 group-hover:text-black">Apply</span>
-            </button >
-      </div>
-
-      {/* Position 3 */}
-      <div className="p-6 shadow-lg rounded-lg hover:shadow-xl transition transform hover:scale-105">
-        <h3 className="text-lg font-semibold text-gray-100 mb-4">Network Engineer</h3>
-        <p className="text-sm text-gray-100 mb-4">
-          Help us optimize our network infrastructure by designing, implementing, and maintaining scalable network solutions for seamless connectivity.
-        </p>
-        <button onClick={() => setShowPopup(true)} class="relative cursor-pointer inline-block px-6 py-3 font-medium group overflow-hidden border border-white text-white rounded">
-                <span class="absolute inset-0 w-0 bg-gray-200 transition-all duration-500 ease-out group-hover:w-full"></span>
-                <span class="relative z-10 group-hover:text-black">Apply</span>
-            </button>
-      </div>
-
-      {/* Position 4 */}
-      <div className="p-6 shadow-lg rounded-lg hover:shadow-xl transition transform hover:scale-105">
-        <h3 className="text-lg font-semibold text-gray-100 mb-4">Cybersecurity Analyst</h3>
-        <p className="text-sm text-gray-100 mb-4">
-          We're looking for a Cybersecurity Analyst to help protect our organization’s data and infrastructure. Experience in threat detection and mitigation is required.
-        </p>
-        <button onClick={() => setShowPopup(true)} class="relative cursor-pointer inline-block px-6 py-3 font-medium group overflow-hidden border border-white text-white rounded">
-                <span class="absolute inset-0 w-0 bg-gray-200 transition-all duration-500 ease-out group-hover:w-full"></span>
-                <span class="relative z-10 group-hover:text-black">Apply</span>
-            </button>
-      </div>
-
-      {/* Position 5 */}
-      <div className="p-6 shadow-lg rounded-lg hover:shadow-xl transition transform hover:scale-105">
-        <h3 className="text-lg font-semibold text-gray-100 mb-4">Human Resources Manager</h3>
-        <p className="text-sm text-gray-100 mb-4">
-          Lead our HR department in managing talent acquisition, employee relations, and organizational development strategies.
-        </p>
-        <button onClick={() => setShowPopup(true)} class="relative cursor-pointer inline-block px-6 py-3 font-medium group overflow-hidden border border-white text-white rounded">
-                <span class="absolute inset-0 w-0 bg-gray-200 transition-all duration-500 ease-out group-hover:w-full"></span>
-                <span class="relative z-10 group-hover:text-black">Apply</span>
-        </button>
-      </div>
-
-      {/* Position 6 */}
-      <div className="p-6  shadow-lg rounded-lg hover:shadow-xl transition transform hover:scale-105">
-        <h3 className="text-lg font-semibold text-gray-100 mb-4">Operations Manager</h3>
-        <p className="text-sm text-gray-100 mb-4">
-          Manage the day-to-day operations of the company, ensuring seamless workflow between departments and optimizing business processes.
-        </p>
-         <button onClick={() => setShowPopup(true)} class="relative cursor-pointer inline-block px-6 py-3 font-medium group overflow-hidden border border-white text-white rounded">
-                <span class="absolute inset-0 w-0 bg-gray-200 transition-all duration-500 ease-out group-hover:w-full"></span>
-                <span class="relative z-10 group-hover:text-black">Apply</span>
-        </button>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-
-        </>
-    )
-}
-
-export default Carrers
-
+export default CareersPage;

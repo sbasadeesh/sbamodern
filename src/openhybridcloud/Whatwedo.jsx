@@ -165,7 +165,7 @@ const ITAutomationPlatform = () => {
                 
                 {/* Learn More Button */}
                 <div className="mt-auto">
-                  <button className="flex items-center justify-center space-x-2 w-full bg-gray-900/50 hover:bg-red-900/30 border border-gray-700 hover:border-red-500 text-gray-300 hover:text-white font-medium py-3 px-4 rounded-lg transition-all duration-300 group-hover:scale-105">
+                  <button className="flex items-center cursor-pointer justify-center space-x-2 w-full bg-gray-900/50 hover:bg-red-900/30 border border-gray-700 hover:border-red-500 text-gray-300 hover:text-white font-medium py-3 px-4 rounded-lg transition-all duration-300 group-hover:scale-105">
                     <span className="text-sm">Learn More</span>
                     <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300" />
                   </button>
@@ -209,14 +209,14 @@ const ITAutomationPlatform = () => {
         {/* Bottom CTA */}
         <div className="text-center mt-16">
           <div className="inline-flex items-center space-x-4 mb-6">
-            <div className="w-3 h-3 bg-red-500 rounded-full animate-pulse"></div>
+            {/* <div className="w-3 h-3 bg-red-500 rounded-full animate-pulse"></div>
             <div className="w-2 h-2 bg-white rounded-full animate-pulse" style={{animationDelay: '0.3s'}}></div>
-            <div className="w-3 h-3 bg-gray-600 rounded-full animate-pulse" style={{animationDelay: '0.6s'}}></div>
+            <div className="w-3 h-3 bg-gray-600 rounded-full animate-pulse" style={{animationDelay: '0.6s'}}></div> */}
           </div>
           
           <p className="text-gray-500 mb-8 text-lg">Ready to transform your IT operations?</p>
           
-          <button className="bg-gradient-to-r from-red-500 to-red-400 text-white font-semibold py-4 px-8 rounded-lg hover:from-red-600 hover:to-red-500 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-red-500/25 flex items-center space-x-2 mx-auto">
+          <button className="bg-gradient-to-r cursor-pointer from-red-500 to-red-400 text-white font-semibold py-4 px-8 rounded-lg hover:from-red-600 hover:to-red-500 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-red-500/25 flex items-center space-x-2 mx-auto">
             <span>Start Your Journey</span>
             <ArrowRight className="w-5 h-5" />
           </button>

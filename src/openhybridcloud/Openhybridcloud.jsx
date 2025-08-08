@@ -7,6 +7,7 @@ import multi_cloud from "./multi_cloud.gif";
 import container_solution from "./container_solution.gif";
 import { CloudCheck, ShieldUserIcon, Workflow } from "lucide-react";
 import ITAutomationPlatform from "./Whatwedo";
+import SolutionsSection from "./Solutions";
 
 function Open_hybrid_cloud() {
 
@@ -81,23 +82,21 @@ function Open_hybrid_cloud() {
         }
       `}</style>
 
-     <section className="min-h-screen flex items-center justify-center text-center pt-10 px-4 sm:px-6 lg:px-8 bg-black">
-  <div data-aos="fade-up" className="max-w-3xl mx-auto">
-    <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white tracking-tight mb-4">
-      Open Hybrid <span className="text-red-500">Cloud</span>
-    </h1>
-    <p className="text-base sm:text-lg md:text-xl mb-6 text-gray-300 max-w-xl mx-auto">
-      integrated <span className="text-red-400">Cloud Solutions</span>
-    </p>
-    <button
-      onClick={() => setShowPopup(true)}
-      className="relative cursor-pointer inline-block px-6 py-3 font-medium group overflow-hidden border-2 border-red-500 text-white rounded bg-black hover:bg-red-500 transition-all duration-600"
-    >
-      <span className="absolute inset-0 w-0 bg-red-500 transition-all duration-800 ease-out group-hover:w-full"></span>
-      <span className="relative z-10 group-hover:text-white">Request a Demo</span>
-    </button>
-  </div>
-</section>
+      <section className=" flex items-center justify-center text-center pt-50 px-4 sm:px-6 lg:px-8 bg-black pb-20">
+          <div data-aos="fade-up" className="max-w-4xl mx-auto">
+            <h1 className="text-5xl sm:text-6xl md:text-7xl font-extrabold text-white tracking-tight leading-tight mb-6">
+              Open hybrid<span className="text-red-500"> Cloud</span>
+            </h1>
+            <p className="text-lg sm:text-xl md:text-2xl mb-8 text-gray-300">
+              integrated Cloud<span className="text-red-400"> Solutions</span>
+            </p>
+            <button className="bg-gradient-to-r cursor-pointer from-red-500 to-red-400 text-white font-semibold py-4 px-8 rounded-lg hover:from-red-600 hover:to-red-500 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-red-500/25 flex items-center space-x-2 mx-auto">
+              <span>Schedule a Strategy Session</span>
+              {/* <ArrowRight className="w-5 h-5" /> */}
+            </button>
+              
+          </div>
+        </section>
 
 
 
@@ -197,106 +196,7 @@ function Open_hybrid_cloud() {
 <ITAutomationPlatform />
 <br /><br /><br />
 {/* Powered By */}
-<div className="text-center mb-12" data-aos="fade-up" data-aos-delay="600">
-  <h2 className="text-2xl sm:text-3xl font-bold text-gray-100 sm:text-4xl">
-    Our Solutions
-  </h2>
-</div>
-
-<div className="py-16 text-white">
-  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div
-      className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center bg-[#1F1D1A]"
-      data-aos="fade-up"
-    >
-      <div className="order-1 lg:order-1">
-        <img
-          src={cloud_migration}
-          alt="RHEL Illustration"
-          className="w-full rounded-lg shadow-lg"
-        />
-      </div>
-
-      <div className="order-2 lg:order-2 lg:pl-10 px-4 sm:px-6 pb-5">
-        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">Cloud Migration</h2>
-        <p className="text-base sm:text-lg mb-6">
-          Seamlessly transition your applications and data to the cloud with minimal downtime. Our migration strategies ensure scalability, security, and optimized performance.
-        </p>
-        <a
-          href="https://www.redhat.com/en/technologies/linux-platforms/enterprise-linux"
-          className="relative inline-block px-6 py-3 font-medium group overflow-hidden border border-white text-white rounded"
-        >
-          <span className="absolute inset-0 w-0 bg-gray-200 transition-all duration-500 ease-out group-hover:w-full"></span>
-          <span className="relative z-10 group-hover:text-black">Learn More</span>
-        </a>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div className="py-16 text-white">
-  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div
-      className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center bg-[#1F1D1A]"
-      data-aos="fade-up"
-    >
-      <div className="order-2 lg:order-1 lg:pl-10 px-4 sm:px-6 pb-5">
-        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">Multi-Cloud Management</h2>
-        <p className="text-base sm:text-lg mb-6">
-          Manage multiple cloud environments efficiently with centralized tools. We help you balance workloads, ensure compliance, and optimize costs across providers.
-        </p>
-        <a
-          href="https://www.redhat.com/en/ansible-collaborative"
-          className="relative inline-block px-6 py-3 font-medium group overflow-hidden border border-white text-white rounded"
-        >
-          <span className="absolute inset-0 w-0 bg-gray-200 transition-all duration-500 ease-out group-hover:w-full"></span>
-          <span className="relative z-10 group-hover:text-black">Learn More</span>
-        </a>
-      </div>
-
-      <div className="order-1 lg:order-2">
-        <img
-          src={multi_cloud}
-          alt="Ansible Illustration"
-          className="w-full rounded-lg shadow-lg"
-        />
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<div className="py-16 text-white">
-  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div
-      className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center bg-[#1F1D1A]"
-      data-aos="fade-up"
-    >
-      <div className="order-1 lg:order-1">
-        <img
-          src={container_solution}
-          alt="RHEL Illustration"
-          className="w-full rounded-lg shadow-lg"
-        />
-      </div>
-
-      <div className="order-2 lg:order-2 lg:pl-10 px-4 sm:px-6 pb-5">
-        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">Container Solutions</h2>
-        <p className="text-base sm:text-lg mb-6">
-          Deploy and manage containerized applications with robust orchestration platforms. We help accelerate development cycles and ensure consistency across environments.
-        </p>
-        <a
-          href="https://www.redhat.com/en/technologies/linux-platforms/enterprise-linux"
-          className="relative inline-block px-6 py-3 font-medium group overflow-hidden border border-white text-white rounded"
-        >
-          <span className="absolute inset-0 w-0 bg-gray-200 transition-all duration-500 ease-out group-hover:w-full"></span>
-          <span className="relative z-10 group-hover:text-black">Learn More</span>
-        </a>
-      </div>
-    </div>
-  </div>
-</div>
-
+<SolutionsSection />
       {/* Powered By */}
       <section className="max-w-7xl mx-auto px-4 py-16">
         <h2

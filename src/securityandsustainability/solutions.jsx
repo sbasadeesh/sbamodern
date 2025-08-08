@@ -1,4 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
+import security_and_sustainability from "./security_and_sustainability.jpg"
+import green_technology from "./green_technology.jpg"
+import complaince_management from "./complaince_management.jpg"
 import { 
   Brain, 
   Database, 
@@ -28,7 +31,7 @@ const SolutionsSection = () => {
       title: "Cybersecurity",
       description: "Strengthen your digital defenses with proactive threat detection, vulnerability assessments, and risk mitigation strategies. We help you secure systems, data, and customer trust.",
       features: ["Advanced Threat Protection", "Multi-Layered Defense", "Real-Time Threat Detection", "Secure Access Control"],
-      image: "https://images.unsplash.com/photo-1555949963-aa79dcee981c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+      image: security_and_sustainability,
       imageAlt: "Machine Learning Models",
       reverse: false
     },
@@ -38,7 +41,7 @@ const SolutionsSection = () => {
       title: "Green Technology",
       description: "Connect disconnected systems, apps, and platforms into one cohesive environment. We ensure seamless data flow and interoperability to support better decision-making and collaboration.",
       features: ["Energy-Efficient Solutions", "Waste Reduction", "Eco-Friendly Innovation", "Sustainable Materials"],
-      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+      image: green_technology,
       imageAlt: "AI Integrations Dashboard",
       reverse: true
     },
@@ -48,7 +51,7 @@ const SolutionsSection = () => {
       title: "Compliance Management",
       description: "Stay ahead of regulatory requirements with automated compliance tracking, reporting tools, and governance frameworks. We support security, privacy, and sustainability standards.",
       features: ["Simplify Regulatory Compliance", "Centralized Compliance Oversight", "Real-Time Compliance Monitoring", "Audit-Ready Documentation"],
-      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+      image: complaince_management,
       imageAlt: "AI Integrations Dashboard",
       reverse: false
     },
@@ -157,9 +160,9 @@ const SolutionsSection = () => {
                     </div> */}
                     
                     {/* Floating Elements */}
-                    <div className="absolute top-8 right-8 w-4 h-4 bg-red-500 rounded-full opacity-60 animate-pulse"></div>
+                    {/* <div className="absolute top-8 right-8 w-4 h-4 bg-red-500 rounded-full opacity-60 animate-pulse"></div>
                     <div className="absolute bottom-8 left-8 w-3 h-3 bg-white rounded-full opacity-40 animate-pulse" style={{animationDelay: '0.5s'}}></div>
-                    <div className="absolute top-16 left-16 w-2 h-2 bg-gray-400 rounded-full opacity-30 animate-pulse" style={{animationDelay: '1s'}}></div>
+                    <div className="absolute top-16 left-16 w-2 h-2 bg-gray-400 rounded-full opacity-30 animate-pulse" style={{animationDelay: '1s'}}></div> */}
                   </div>
                   
                   {/* Decorative Elements */}
@@ -210,10 +213,10 @@ const SolutionsSection = () => {
                 </div>
                 
                 {/* CTA Button */}
-                <div className="flex items-center space-x-4">
+                <div className="flex items-center space-x-4 cursor-pointer">
                   <button className="group bg-gradient-to-r cursor-pointer from-red-500 to-red-400 text-white font-semibold py-3 px-8 rounded-lg hover:from-red-600 hover:to-red-500 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-red-500/25 flex items-center space-x-2">
-                    <span>Learn More</span>
-                    <ArrowRight className="w-5 h-5 transform group-hover:translate-x-1 transition-transform duration-300" />
+                    <span className=''>Learn More</span>
+                    <ArrowRight className="w-5 h-5  transform group-hover:translate-x-1 transition-transform duration-300" />
                   </button>
                 </div>
               </div>
@@ -252,9 +255,9 @@ const SolutionsSection = () => {
         {/* Bottom CTA */}
         <div className="text-center mt-20">
           <div className="inline-flex items-center space-x-4 mb-6">
-            <div className="w-3 h-3 bg-red-500 rounded-full animate-pulse"></div>
+            {/* <div className="w-3 h-3 bg-red-500 rounded-full animate-pulse"></div>
             <div className="w-2 h-2 bg-white rounded-full animate-pulse" style={{animationDelay: '0.3s'}}></div>
-            <div className="w-3 h-3 bg-gray-600 rounded-full animate-pulse" style={{animationDelay: '0.6s'}}></div>
+            <div className="w-3 h-3 bg-gray-600 rounded-full animate-pulse" style={{animationDelay: '0.6s'}}></div> */}
           </div>
           
           <p className="text-gray-500 text-lg mb-8">Ready to explore our solutions?</p>

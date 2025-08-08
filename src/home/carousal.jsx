@@ -1,91 +1,98 @@
 import React, { useState, useEffect } from 'react';
-import slide from "./slide.jpg"
+import slide from './slide.jpg'; // Replace with actual image
 
 const VideoCarousel = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
+
   const slides = [
     {
       img: slide,
-      title: 'CUATR',
-      text: '"With Harvey, you gain the ability."',
+      logo: 'https://upload.wikimedia.org/wikipedia/commons/5/53/Repsol_logo.svg',
+      text: '“Harvey has been a significant achievement for our legal department – the implementation of Harvey positions Repsol\'s lawyers at the forefront of the legal profession\'s digital transformation.”',
+      quote: 'Pablo Blanco, General Counsel, Repsol',
       caseStudyLink: '#',
-      secondaryLink: '#',
-      caseStudyText: 'Case Study',
-      quote: 'Omar Puertas-Alvarez, Partner',
     },
     {
       img: slide,
-      title: 'CLIEUKSC',
-      text: '"Within spring, fiction Demoo Perinor Katecholiione."',
+      logo: 'https://upload.wikimedia.org/wikipedia/commons/3/35/Red_Hat_logo_2019.svg',
+      text: '“With Harvey, our innovation potential feels almost limitless.”',
+      quote: 'Omar Puertas-Alvarez, Partner',
       caseStudyLink: '#',
-      secondaryLink: '#',
-      caseStudyText: 'Case Study',
-      quote: 'Domo Riberos Alvors Rander',
     },
     {
       img: slide,
-      title: 'CUATRECASAS',
-      text: '"This ability to outperform yourself rapidly and almost limitlessly."',
+      logo: 'https://logos-world.net/wp-content/uploads/2020/09/IBM-Logo.png',
+      text: '“Harvey delivers unmatched value for legal professionals using AI-powered insights.”',
+      quote: 'Anna Garcia, Chief Legal Strategist, IBM',
       caseStudyLink: '#',
-      secondaryLink: '#',
-      caseStudyText: 'Case Study',
-      quote: 'Omar Puertas-Alvarez, Partner',
-    },
+    }
   ];
+
   const totalSlides = slides.length;
 
-  const updateCarousel = (slideIndex) => {
-    setCurrentSlide(slideIndex);
-  };
+  const updateCarousel = (index) => setCurrentSlide(index);
 
-  const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % totalSlides);
-  };
+  const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % totalSlides);
 
   useEffect(() => {
-    const autoSlideInterval = setInterval(nextSlide, 5000);
-    return () => clearInterval(autoSlideInterval);
+    const interval = setInterval(nextSlide, 6000);
+    return () => clearInterval(interval);
   }, []);
 
   return (
-    <div className="carousel relative max-w-[1200px] mx-auto overflow-hidden">
-      <div
-        className="carousel-inner flex transition-transform duration-500 ease-in-out"
-        style={{ transform: `translateX(-${currentSlide * 100}%)` }}
-      >
-        {slides.map((slide, index) => (
-          <div key={index} className="carousel-item min-w-full min-h-[300px] relative text-center">
-            <img src={slide.img} alt={`Slide ${index + 1}`} className="w-full h-full object-cover opacity-70" />
-            <div className="carousel-text absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white">
-              <h2 className="text-2xl font-bold mb-2">{slide.title}</h2>
-              <p className="text-base mb-4">{slide.text}</p>
-              <a href={slide.caseStudyLink} className="btn inline-block px-4 py-2 bg-white text-black text-sm rounded-md">
-                {index === 0 ? 'Read Case Study' : index === 1 ? 'Create Test' : 'Test Case'}
-              </a>
-              <a
-                href={slide.secondaryLink}
-                className="btn secondary inline-block px-4 py-2 bg-transparent text-white text-sm rounded-md border border-white ml-2"
-              >
-                Case Study
-              </a>
-            </div>
-            <div className="case-study absolute bottom-4 left-4 bg-[rgba(255,255,255,0.2)] px-2 py-1 rounded-md text-white text-sm">
-              {slide.caseStudyText}
-            </div>
-            <div className="quote absolute bottom-4 right-4 text-gray-300 text-sm">{slide.quote}</div>
-          </div>
-        ))}
-      </div>
-      <div className="carousel-indicators flex justify-center mt-4 gap-2">
-        {slides.map((_, index) => (
+    <div className="bg-black py-16 px-4">
+      <div className="max-w-5xl mx-auto">
+        {/* Image carousel */}
+        <div className="relative overflow-hidden rounded-xl shadow-lg">
           <div
-            key={index}
-            className={`carousel-dot w-3 h-3 rounded-full bg-gray-300 cursor-pointer transition-all duration-300 ease-in-out ${
-              currentSlide === index ? 'bg-gray-800 scale-125' : 'hover:bg-gray-600'
-            }`}
-            onClick={() => updateCarousel(index)}
-          />
-        ))}
+            className="whitespace-nowrap transition-transform duration-700 ease-in-out"
+            style={{ transform: `translateX(-${currentSlide * 100}%)`, display: 'flex' }}
+          >
+            {slides.map((slide, idx) => (
+              <div key={idx} className="w-full flex-shrink-0 relative h-[400px] md:h-[460px] bg-black">
+                <img
+                  src={slide.img}
+                  alt="slide"
+                  className="w-full h-full object-cover brightness-[0.35]"
+                />
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <img
+                    src={slide.logo}
+                    alt="logo"
+                    className="w-40 md:w-48 h-auto"
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Stable Text and CTA Section */}
+        <div className="mt-8 text-center text-white min-h-[200px] flex flex-col items-center justify-center transition-all duration-500">
+          <p className="text-xl md:text-2xl font-medium leading-relaxed mb-4 max-w-3xl">
+            {slides[currentSlide].text}
+          </p>
+          <p className="text-sm text-gray-400 mb-6">{slides[currentSlide].quote}</p>
+          <a
+            href={slides[currentSlide].caseStudyLink}
+            className="inline-block bg-white text-black px-6 py-3 rounded-md font-medium text-sm hover:bg-gray-200 transition"
+          >
+            Read Case Study
+          </a>
+        </div>
+
+        {/* Indicators */}
+        <div className="flex justify-center gap-3 mt-6">
+          {slides.map((_, i) => (
+            <div
+              key={i}
+              onClick={() => updateCarousel(i)}
+              className={`w-3 h-3 rounded-full cursor-pointer transition-all duration-300 ${
+                currentSlide === i ? 'bg-white' : 'bg-gray-600'
+              }`}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );

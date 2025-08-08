@@ -1,4 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
+import machine_learning from "./machine_learning.jpg"
+import ai_integrate from "./ai_integrate.jpg"
 import { 
   Brain, 
   Database, 
@@ -24,7 +26,7 @@ const SolutionsSection = () => {
       title: "Machine Learning Models",
       description: "Build intelligent systems with our ready-to-integrate machine learning models. From predictive analytics to natural language processing, we tailor solutions to match your business needs.",
       features: ["Predictive Analytics", "Natural Language Processing", "Computer Vision", "Custom Model Development"],
-      image: "https://images.unsplash.com/photo-1555949963-aa79dcee981c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+      image: machine_learning,
       imageAlt: "Machine Learning Models",
       reverse: false
     },
@@ -34,7 +36,7 @@ const SolutionsSection = () => {
       title: "AI Integrations",
       description: "Seamlessly integrate AI into your workflows, tools, and customer touchpoints. From chatbots to smart search and recommendations, our solutions enhance efficiency and experience.",
       features: ["Real-time Dashboards", "Advanced Reporting", "Data Visualization", "Predictive Insights"],
-      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+      image: ai_integrate,
       imageAlt: "AI Integrations Dashboard",
       reverse: true
     },
@@ -238,9 +240,9 @@ const SolutionsSection = () => {
         {/* Bottom CTA */}
         <div className="text-center mt-20">
           <div className="inline-flex items-center space-x-4 mb-6">
-            <div className="w-3 h-3 bg-red-500 rounded-full animate-pulse"></div>
+            {/* <div className="w-3 h-3 bg-red-500 rounded-full animate-pulse"></div>
             <div className="w-2 h-2 bg-white rounded-full animate-pulse" style={{animationDelay: '0.3s'}}></div>
-            <div className="w-3 h-3 bg-gray-600 rounded-full animate-pulse" style={{animationDelay: '0.6s'}}></div>
+            <div className="w-3 h-3 bg-gray-600 rounded-full animate-pulse" style={{animationDelay: '0.6s'}}></div> */}
           </div>
           
           <p className="text-gray-500 text-lg mb-8">Ready to explore our solutions?</p>
