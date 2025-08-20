@@ -53,16 +53,16 @@ const ManufacturingLandingPage = () => {
         <div className="absolute inset-0 bg-gradient-to-br from-red-900/20 to-black"></div>
         <div className="relative max-w-7xl mx-auto px-4 py-20 sm:px-6 lg:px-8">
           <div className="text-center">
-            <div className="flex justify-center mb-6">
+            {/* <div className="flex justify-center mb-6">
               <Factory className="w-16 h-16 text-red-400" />
-            </div>
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-white via-red-100 to-red-400 bg-clip-text text-transparent">
+            </div> */}
+            <h1 data-aos="fade-up" className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-red via-red-600 to-red-600 bg-clip-text text-transparent">
               MANUFACTURING
             </h1>
-            <h2 className="text-2xl md:text-3xl font-semibold mb-8 text-gray-100">
+            <h2 data-aos="fade-up" className="text-2xl md:text-3xl font-semibold mb-8 text-gray-100">
               Smart Factory Solutions
             </h2>
-            <p className="text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto leading-relaxed mb-12">
+            <p data-aos="fade-up" className="text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto leading-relaxed mb-12">
               Enable smart factories with AI, IoT, and predictive analytics. From process automation 
               to real-time monitoring, we help manufacturers increase efficiency, reduce downtime, 
               and enhance product quality.
@@ -70,8 +70,8 @@ const ManufacturingLandingPage = () => {
             <div className="flex flex-wrap justify-center gap-4 mb-16">
               {benefits.map((benefit, index) => (
                 <div key={index} className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-6 py-3 border border-white/20">
-                  <span className="text-red-400">{benefit.icon}</span>
-                  <span className="text-sm font-medium">{benefit.text}</span>
+                  <span className="text-red-400" data-aos="fade-up">{benefit.icon}</span>
+                  <span className="text-sm font-medium" data-aos="fade-up">{benefit.text}</span>
                 </div>
               ))}
             </div>
@@ -97,7 +97,7 @@ const ManufacturingLandingPage = () => {
           
           <div className="grid md:grid-cols-2 gap-8">
             {services.map((service, index) => (
-              <div key={index} className="group relative">
+              <div key={index} className="group relative" data-aos="fade-up"  >
                 <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 hover:border-red-400/50 transition-all duration-300 hover:bg-white/10 h-full">
                   <div className="flex items-center gap-4 mb-6">
                     <div className="p-3 bg-red-500/20 rounded-xl text-red-400 group-hover:bg-red-500/30 transition-colors duration-300">
@@ -128,20 +128,20 @@ const ManufacturingLandingPage = () => {
       {/* Stats Section */}
       <section className="py-16 bg-gradient-to-r from-red-900/20 via-black to-red-900/20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-4 gap-8 text-center">
+          <div className="grid md:grid-cols-4 gap-8 text-center" data-aos="fade-up">
             <div className="bg-white/5 rounded-xl p-6 border border-white/10">
               <div className="text-3xl font-bold text-red-400 mb-2">40%</div>
               <div className="text-gray-300">Efficiency Increase</div>
             </div>
-            <div className="bg-white/5 rounded-xl p-6 border border-white/10">
+            <div className="bg-white/5 rounded-xl p-6 border border-white/10" data-aos="fade-up">
               <div className="text-3xl font-bold text-red-400 mb-2">60%</div>
               <div className="text-gray-300">Downtime Reduction</div>
             </div>
-            <div className="bg-white/5 rounded-xl p-6 border border-white/10">
+            <div className="bg-white/5 rounded-xl p-6 border border-white/10" data-aos="fade-up">
               <div className="text-3xl font-bold text-red-400 mb-2">25%</div>
               <div className="text-gray-300">Cost Savings</div>
             </div>
-            <div className="bg-white/5 rounded-xl p-6 border border-white/10">
+            <div className="bg-white/5 rounded-xl p-6 border border-white/10" data-aos="fade-up">
               <div className="text-3xl font-bold text-red-400 mb-2">99%</div>
               <div className="text-gray-300">Quality Accuracy</div>
             </div>
@@ -152,14 +152,14 @@ const ManufacturingLandingPage = () => {
       {/* CTA Section */}
       <section className="py-20 bg-gradient-to-r from-red-900/20 via-black to-red-900/20">
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
+          <h2 className="text-4xl md:text-5xl font-bold mb-6" data-aos="fade-up">
             Transform Your <span className="text-red-400">Manufacturing</span> Operations
           </h2>
-          <p className="text-xl text-gray-300 mb-8 leading-relaxed">
+          <p className="text-xl text-gray-300 mb-8 leading-relaxed" data-aos="fade-up">
             Join industry leaders who are already benefiting from smart factory technologies. 
             Start your digital transformation journey today.
           </p>
-          <button onClick={()=>{ window.location.href = "/Connect-with-us"}} className="group bg-red-600 hover:bg-red-700 text-white font-bold py-4 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-red-500/25">
+          <button data-aos="fade-up" onClick={()=>{ window.location.href = "/Connect-with-us"}} className="group cursor-pointer bg-red-600 hover:bg-red-700 text-white font-bold py-4 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-red-500/25">
             <span className="flex items-center gap-2">
               Start Your Digital Journey
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />

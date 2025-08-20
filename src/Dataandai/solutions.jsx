@@ -28,7 +28,8 @@ const SolutionsSection = () => {
       features: ["Predictive Analytics", "Natural Language Processing", "Computer Vision", "Custom Model Development"],
       image: machine_learning,
       imageAlt: "Machine Learning Models",
-      reverse: false
+      reverse: false,
+      link:"Our-solutions/Technology/Machinelearning"
     },
     {
       id: 2,
@@ -38,7 +39,8 @@ const SolutionsSection = () => {
       features: ["Real-time Dashboards", "Advanced Reporting", "Data Visualization", "Predictive Insights"],
       image: ai_integrate,
       imageAlt: "AI Integrations Dashboard",
-      reverse: true
+      reverse: true,
+      link:"Our-solutions/Technology/AIIntegration"
     },
   ];
 
@@ -198,12 +200,12 @@ const SolutionsSection = () => {
                 </div>
                 
                 {/* CTA Button */}
-                <div className="flex items-center space-x-4">
-                  <button className="group bg-gradient-to-r cursor-pointer from-red-500 to-red-400 text-white font-semibold py-3 px-8 rounded-lg hover:from-red-600 hover:to-red-500 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-red-500/25 flex items-center space-x-2">
+                {/* <div className="flex items-center space-x-4">
+                  <button onClick={ ()=>{ window.location.href = solution.link}} className="group bg-gradient-to-r cursor-pointer from-red-500 to-red-400 text-white font-semibold py-3 px-8 rounded-lg hover:from-red-600 hover:to-red-500 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-red-500/25 flex items-center space-x-2">
                     <span>Learn More</span>
                     <ArrowRight className="w-5 h-5 transform group-hover:translate-x-1 transition-transform duration-300" />
                   </button>
-                </div>
+                </div> */}
               </div>
             </div>
           ))}

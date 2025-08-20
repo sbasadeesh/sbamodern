@@ -19,6 +19,9 @@ const HRAnalytics = () => {
   }, []);
  const [visibleSections, setVisibleSections] = useState([]);
  
+
+ 
+
  const sectionRefs = useRef([]);
   const services = [
     {

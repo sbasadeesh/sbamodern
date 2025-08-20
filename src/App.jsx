@@ -5,6 +5,20 @@ import ContactUsPage from './contactus/contact'
 import Solutions from './solutions/Solutions'
 import Dashboard from './Hr/Dashboard'
 import HRLoginPage from './Hr/login'
+import BFSI from './solutions/industries/bfsi/bfsi'
+import ManufacturingLandingPage from './solutions/industries/manufacturing/Manufacturing'
+import MediaLandingPage from './solutions/industries/media/Media'
+import ITITESLandingPage from './solutions/industries/it_and_ites/it_and_ites'
+import TelecomBPOKPOLandingPage from './solutions/industries/telecommunication/telecommunication'
+import HealthcareLandingPage from './solutions/industries/healthcare/healthcare'
+import MachineLearning from './solutions/technology/Machinelearning'
+import AIIntegrations from './solutions/technology/Aiintegration'
+import WorkflowAutomation from './solutions/technology/Workflowautomation'
+import SystemIntegration from './solutions/technology/Systemintegration'
+import ProcessOptimization from './solutions/technology/Processoptimization'
+import CustomerAnalytics from './solutions/Domain/CustomerAnalytics'
+import HRAnalytics from './solutions/Domain/HRAnalytics'
+import MarketAnalytics from './solutions/Domain/MaketingAnalytics'
 
 // Lazy load route components
 const Home = lazy(() => import('./home/home'))
@@ -42,6 +56,20 @@ function App() {
           <Route path='/Our-solutions' element={<Solutions />} />
           <Route path='hr/Dashboard' element={<Dashboard />} />
           <Route path='hr/login' element={<HRLoginPage />} />
+          <Route path='Our-solutions/BFSI' element={<BFSI />} />
+          <Route path='Our-solutions/Manufacturing' element={<ManufacturingLandingPage />} />
+          <Route path='Our-solutions/Media' element={<MediaLandingPage />} />
+          <Route path='Our-solutions/IT-and-ITES' element={<ITITESLandingPage />} />
+          <Route path='Our-solutions/Telecommunication' element={<TelecomBPOKPOLandingPage />} />
+          <Route path='Our-solutions/Healthcare' element={<HealthcareLandingPage />} />
+          <Route path='Our-solutions/Technology/Machinelearning' element={<MachineLearning />} />
+          <Route path='Our-solutions/Technology/AIIntegration' element={<AIIntegrations />} />
+          <Route path='Our-solutions/Technology/WorkflowAutomation' element={<WorkflowAutomation />} />
+          <Route path='Our-solutions/Technology/SystemIntegration' element={<SystemIntegration />} />
+          <Route path='Our-solutions/Technology/Processoptimization' element={<ProcessOptimization />} />
+          <Route path='Our-solutions/Domain/CustomerAnalytics' element={<CustomerAnalytics />} />
+          <Route path='Our-solutions/Domain/HRAnalytics' element={<HRAnalytics />} />
+          <Route path='Our-solutions/Domain/MarketingAnalytics' element={<MarketAnalytics />} />
         </Routes>
       </Suspense>
     </BrowserRouter>

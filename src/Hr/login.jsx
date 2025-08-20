@@ -76,7 +76,7 @@ const HRLoginPage = () => {
         // In a real app, you'd handle this with proper state management
         setTimeout(() => {
           // Redirect to job management or dashboard
-          window.location.href = '/job-management'; // or handle with routing
+          window.location.href = '/hr/Dashboard'; // or handle with routing
         }, 1500);
       } else {
         showMessage('error', result.message || 'Login failed');

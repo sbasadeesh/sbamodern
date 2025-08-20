@@ -293,8 +293,8 @@ const AutomationSection = () => {
           <p className="text-gray-500 mb-6 md:mb-8 text-sm md:text-base">
             Ready to eliminate digital friction in your operations today?
           </p>
-          <button onClick={() => setShowPopup(true)} className="bg-gradient-to-r cursor-pointer from-red-500 to-red-400 text-white font-semibold py-3 md:py-4 px-6 md:px-8 rounded-lg hover:from-red-600 hover:to-red-500 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-red-500/25 flex items-center space-x-2 mx-auto text-sm md:text-base">
-            <span>Schedule A Strategy Session</span>
+          <button onClick={()=>{ window.location.href = "/Our-solutions" }} className="bg-gradient-to-r cursor-pointer from-red-500 to-red-400 text-white font-semibold py-3 md:py-4 px-6 md:px-8 rounded-lg hover:from-red-600 hover:to-red-500 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-red-500/25 flex items-center space-x-2 mx-auto text-sm md:text-base">
+            <span>Explore our Solutions</span>
             <ArrowRight className="w-4 h-4 md:w-5 md:h-5" />
           </button>
         </div>

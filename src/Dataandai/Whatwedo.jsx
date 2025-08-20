@@ -216,10 +216,10 @@ const ITAutomationPlatform = () => {
           
           <p className="text-gray-500 mb-8 text-lg">Ready to transform your IT operations?</p>
           
-          <button className="bg-gradient-to-r cursor-pointer from-red-500 to-red-400 text-white font-semibold py-4 px-8 rounded-lg hover:from-red-600 hover:to-red-500 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-red-500/25 flex items-center space-x-2 mx-auto">
+          {/* <button className="bg-gradient-to-r cursor-pointer from-red-500 to-red-400 text-white font-semibold py-4 px-8 rounded-lg hover:from-red-600 hover:to-red-500 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-red-500/25 flex items-center space-x-2 mx-auto">
             <span>Start Your Journey</span>
             <ArrowRight className="w-5 h-5" />
-          </button>
+          </button> */}
         </div>
       </div>
     </section>

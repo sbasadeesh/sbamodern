@@ -38,14 +38,15 @@ const solutions = [
     ],
     image:"https://images.unsplash.com/photo-1555949963-aa79dcee981c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
     imageAlt: "BFSI Industry",
-    reverse: false
+    reverse: false,
+    link:"Our-solutions/BFSI"
   },
   {
     id: 2,
     icon: <Factory className="w-12 h-12" />,
     title: "Manufacturing",
     description:
-      "Enable smart factories with AI, IoT, and predictive analytics. From process automation to real-time monitoring, we help manufacturers increase efficiency, reduce downtime, and enhance product quality.",
+    "Enable smart factories with AI, IoT, and predictive analytics. From process automation to real-time monitoring, we help manufacturers increase efficiency, reduce downtime, and enhance product quality.",
     features: [
       "Predictive Maintenance",
       "Supply Chain Optimization",
@@ -53,16 +54,17 @@ const solutions = [
       "Robotic Process Automation (RPA)"
     ],
     image:
-      "https://images.unsplash.com/photo-1555949963-aa79dcee981c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+    "https://images.unsplash.com/photo-1555949963-aa79dcee981c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
     imageAlt: "Manufacturing AI",
-    reverse: true
+    reverse: true,
+    link:"Our-solutions/Manufacturing"
   },
   {
     id: 3,
     icon: <ImagePlay className="w-12 h-12" />,
     title: "Media",
     description:
-      "Transform content creation, personalization, and audience engagement through AI-driven media workflows. Our solutions power recommendation engines, automated editing, and targeted advertising.",
+    "Transform content creation, personalization, and audience engagement through AI-driven media workflows. Our solutions power recommendation engines, automated editing, and targeted advertising.",
     features: [
       "AI Content Tagging",
       "Audience Segmentation",
@@ -70,16 +72,17 @@ const solutions = [
       "Speech & Video Recognition"
     ],
     image:
-      "https://images.unsplash.com/photo-1555949963-aa79dcee981c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+    "https://images.unsplash.com/photo-1555949963-aa79dcee981c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
     imageAlt: "Media Industry AI",
-    reverse: false
+    reverse: false,
+    link:"Our-solutions/Media"
   },
   {
     id: 4,
     icon: <Building className="w-12 h-12" />,
     title: "IT / ITES",
     description:
-      "Optimize IT and IT-enabled services with intelligent automation, cloud migration, and advanced analytics. Drive efficiency, reduce manual effort, and enhance service delivery across your ecosystem.",
+    "Optimize IT and IT-enabled services with intelligent automation, cloud migration, and advanced analytics. Drive efficiency, reduce manual effort, and enhance service delivery across your ecosystem.",
     features: [
       "Process Automation",
       "Multi-cloud Deployment",
@@ -87,16 +90,17 @@ const solutions = [
       "Service Desk Automation"
     ],
     image:
-      "https://images.unsplash.com/photo-1555949963-aa79dcee981c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+    "https://images.unsplash.com/photo-1555949963-aa79dcee981c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
     imageAlt: "IT and ITES Solutions",
-    reverse: true
+    reverse: true,
+    link:"Our-solutions/IT-and-ITES"
   },
   {
     id: 5,
     icon: <Headset className="w-12 h-12" />,
     title: "Telecom / BPO / KPO",
     description:
-      "Revolutionize the way customer experience, operations, and backend processing work in the telecom and outsourcing industries. AI enables faster resolution, personalized engagement, and cost savings.",
+    "Revolutionize the way customer experience, operations, and backend processing work in the telecom and outsourcing industries. AI enables faster resolution, personalized engagement, and cost savings.",
     features: [
       "Conversational AI",
       "Customer Sentiment Analysis",
@@ -104,16 +108,17 @@ const solutions = [
       "Workforce Optimization"
     ],
     image:
-      "https://images.unsplash.com/photo-1555949963-aa79dcee981c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+    "https://images.unsplash.com/photo-1555949963-aa79dcee981c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
     imageAlt: "Telecom and BPO AI",
-    reverse: false
+    reverse: false,
+    link:"Our-solutions/Telecommunication"
   },
   {
     id: 6,
     icon: <HeartPulse className="w-12 h-12" />,
     title: "Healthcare",
     description:
-      "Accelerate diagnostics, patient care, and hospital management through AI-powered tools. We enable clinical decision support, remote monitoring, and intelligent automation in the healthcare ecosystem.",
+    "Accelerate diagnostics, patient care, and hospital management through AI-powered tools. We enable clinical decision support, remote monitoring, and intelligent automation in the healthcare ecosystem.",
     features: [
       "Medical Image Analysis",
       "Remote Patient Monitoring",
@@ -121,9 +126,10 @@ const solutions = [
       "Electronic Health Record (EHR) Automation"
     ],
     image:
-      "https://images.unsplash.com/photo-1555949963-aa79dcee981c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+    "https://images.unsplash.com/photo-1555949963-aa79dcee981c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
     imageAlt: "Healthcare AI",
-    reverse: true
+    reverse: true,
+    link:"Our-solutions/Healthcare"
   }
 ];
 
@@ -280,7 +286,7 @@ const solutions = [
                 
                 {/* CTA Button */}
                 <div className="flex items-center space-x-4">
-                  <button className="group bg-gradient-to-r cursor-pointer from-red-500 to-red-400 text-white font-semibold py-3 px-8 rounded-lg hover:from-red-600 hover:to-red-500 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-red-500/25 flex items-center space-x-2">
+                  <button onClick={()=>{ window.location.href = solution.link}} className="group bg-gradient-to-r cursor-pointer from-red-500 to-red-400 text-white font-semibold py-3 px-8 rounded-lg hover:from-red-600 hover:to-red-500 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-red-500/25 flex items-center space-x-2">
                     <span>Learn More</span>
                     <ArrowRight className="w-5 h-5 transform group-hover:translate-x-1 transition-transform duration-300" />
                   </button>
@@ -301,7 +307,7 @@ const solutions = [
           
           <p className="text-gray-500 text-lg mb-8">Ready to explore our solutions?</p>
           
-          <button className="bg-gradient-to-r cursor-pointer from-red-500 to-red-400 text-white font-semibold py-4 px-8 rounded-lg hover:from-red-600 hover:to-red-500 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-red-500/25 flex items-center space-x-2 mx-auto">
+          <button onClick={()=>{ window.location.href = "/Connect-with-us"}} className="bg-gradient-to-r cursor-pointer from-red-500 to-red-400 text-white font-semibold py-4 px-8 rounded-lg hover:from-red-600 hover:to-red-500 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-red-500/25 flex items-center space-x-2 mx-auto">
             <span>Get a Call Back</span>
             <ArrowRight className="w-5 h-5" />
           </button>

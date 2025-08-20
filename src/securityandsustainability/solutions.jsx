@@ -213,12 +213,12 @@ const SolutionsSection = () => {
                 </div>
                 
                 {/* CTA Button */}
-                <div className="flex items-center space-x-4 cursor-pointer">
+                {/* <div className="flex items-center space-x-4 cursor-pointer">
                   <button className="group bg-gradient-to-r cursor-pointer from-red-500 to-red-400 text-white font-semibold py-3 px-8 rounded-lg hover:from-red-600 hover:to-red-500 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-red-500/25 flex items-center space-x-2">
                     <span className=''>Learn More</span>
                     <ArrowRight className="w-5 h-5  transform group-hover:translate-x-1 transition-transform duration-300" />
                   </button>
-                </div>
+                </div> */}
               </div>
             </div>
           ))}

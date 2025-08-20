@@ -192,7 +192,7 @@ const CareersPage = () => {
     data.append('jobTitle', selectedJob.title);
 
     try {
-      const res = await fetch('http://localhost:5000/apply-job', {
+      const res = await fetch('http://localhost:5000/apply-jobs', {
         method: 'POST',
         body: data,
       });
@@ -330,7 +330,7 @@ const CareersPage = () => {
                           </div>
                         </div>
                         <div className="text-right">
-                          {job.salary && <div className="text-red-400 font-semibold">{job.salary}</div>}
+                          {/* {job.salary && <div className="text-red-400 font-semibold">{job.salary}</div>} */}
                           <div className="text-gray-500 text-sm">{job.experience}</div>
                         </div>
                       </div>

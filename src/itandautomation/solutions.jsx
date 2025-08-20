@@ -32,7 +32,8 @@ const SolutionsSection = () => {
       features: ["Document Processing ", "Custom Task Bots", "Email & Message Handling", "Custom Automation Model"],
       image: workflow_automation,
       imageAlt: "Machine Learning Models",
-      reverse: false
+      reverse: false,
+      link:"Our-solutions/Technology/WorkflowAutomation"
     },
     {
       id: 2,
@@ -42,7 +43,8 @@ const SolutionsSection = () => {
       features: ["Data Sync Across Tools", "API-Based Automation", "AI-Powered Connectors", "Custom Integration Workflows"],
       image: system_integration,
       imageAlt: "AI Integrations Dashboard",
-      reverse: true
+      reverse: true,
+      link:"Our-solutions/Technology/SystemIntegration"
     },
     {
       id: 3,
@@ -52,7 +54,8 @@ const SolutionsSection = () => {
       features: ["Continuous Improvement", "Task Prioritization", "Identify Bottlenecks", "Smart Recommendations"],
       image: process_optimisation,
       imageAlt: "AI Integrations Dashboard",
-      reverse: false 
+      reverse: false,
+      link:"our-solutions/Technology/Processoptimization"
     },
   ];
 
@@ -212,12 +215,12 @@ const SolutionsSection = () => {
                 </div>
                 
                 {/* CTA Button */}
-                <div className="flex items-center space-x-4">
-                  <button className="group bg-gradient-to-r cursor-pointer from-red-500 to-red-400 text-white font-semibold py-3 px-8 rounded-lg hover:from-red-600 hover:to-red-500 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-red-500/25 flex items-center space-x-2">
+                {/* <div className="flex items-center space-x-4">
+                  <button onClick={ ()=>{ window.location.href = solution.link } } className="group bg-gradient-to-r cursor-pointer from-red-500 to-red-400 text-white font-semibold py-3 px-8 rounded-lg hover:from-red-600 hover:to-red-500 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-red-500/25 flex items-center space-x-2">
                     <span>Learn More</span>
                     <ArrowRight className="w-5 h-5 transform group-hover:translate-x-1 transition-transform duration-300" />
                   </button>
-                </div>
+                </div> */}
               </div>
             </div>
           ))}

@@ -54,24 +54,24 @@ const HealthcareLandingPage = () => {
         <div className="relative max-w-7xl mx-auto px-4 py-20 sm:px-6 lg:px-8">
           <div className="text-center">
             <div className="flex justify-center mb-6">
-              <div className="relative">
+              {/* <div className="relative">
                 <Heart className="w-16 h-16 text-red-400 animate-pulse" />
                 <div className="absolute -top-1 -right-1 w-6 h-6 bg-red-500 rounded-full opacity-75 animate-ping"></div>
-              </div>
+              </div> */}
             </div>
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-white via-red-100 to-red-400 bg-clip-text text-transparent">
+            <h1 data-aos="fade-up" className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-red via-red-500 to-red-400 bg-clip-text text-transparent">
               Healthcare AI
             </h1>
-            <h2 className="text-2xl md:text-3xl font-semibold mb-8 text-gray-100">
+            <h2 data-aos="fade-up" className="text-2xl md:text-3xl font-semibold mb-8 text-gray-100">
               Intelligent Medical Solutions
             </h2>
-            <p className="text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto leading-relaxed mb-12">
+            <p data-aos="fade-up" className="text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto leading-relaxed mb-12">
               Accelerate diagnostics, patient care, and hospital management through AI-powered tools. 
               We enable clinical decision support, remote monitoring, and intelligent automation in the healthcare ecosystem.
             </p>
             <div className="flex flex-wrap justify-center gap-4 mb-16">
               {benefits.map((benefit, index) => (
-                <div key={index} className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-6 py-3 border border-white/20 hover:border-red-400/50 transition-colors duration-300">
+                <div data-aos="fade-up" key={index} className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-6 py-3 border border-white/20 hover:border-red-400/50 transition-colors duration-300">
                   <span className="text-red-400">{benefit.icon}</span>
                   <span className="text-sm font-medium">{benefit.text}</span>
                 </div>
@@ -91,17 +91,17 @@ const HealthcareLandingPage = () => {
       <section className="py-20 bg-gradient-to-b from-black to-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">
+            <h2 data-aos="fade-up" className="text-4xl md:text-5xl font-bold mb-4">
               Revolutionary <span className="text-red-400">Healthcare</span> Technology
             </h2>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+            <p data-aos="fade-up" className="text-xl text-gray-300 max-w-3xl mx-auto">
               Transforming medical care with AI-driven solutions for better patient outcomes and operational efficiency
             </p>
           </div>
           
           <div className="grid md:grid-cols-2 gap-8">
             {services.map((service, index) => (
-              <div key={index} className="group relative">
+              <div data-aos="fade-up" key={index} className="group relative">
                 <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 hover:border-red-400/50 transition-all duration-300 hover:bg-white/10 h-full hover:shadow-2xl hover:shadow-red-500/10">
                   <div className="flex items-center gap-4 mb-6">
                     <div className="p-3 bg-red-500/20 rounded-xl text-red-400 group-hover:bg-red-500/30 transition-colors duration-300">
@@ -133,25 +133,25 @@ const HealthcareLandingPage = () => {
       <section className="py-16 bg-gradient-to-r from-red-900/20 via-black to-red-900/20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h3 className="text-3xl font-bold mb-4">
+            <h3 data-aos="fade-up" className="text-3xl font-bold mb-4">
               Advanced <span className="text-red-400">Medical Tech</span> Stack
             </h3>
           </div>
           
-          <div className="grid md:grid-cols-3 gap-8 text-center">
+          <div data-aos="fade-up" className="grid md:grid-cols-3 gap-8 text-center">
             <div className="bg-white/5 rounded-xl p-8 border border-white/10 hover:border-red-400/30 transition-all duration-300 hover:shadow-xl hover:shadow-red-500/10">
               <Stethoscope className="w-12 h-12 text-red-400 mx-auto mb-4" />
               <h4 className="text-xl font-bold mb-3">Diagnostic Intelligence</h4>
               <p className="text-gray-300">AI-powered diagnostic tools with machine learning algorithms for accurate medical assessments</p>
             </div>
             
-            <div className="bg-white/5 rounded-xl p-8 border border-white/10 hover:border-red-400/30 transition-all duration-300 hover:shadow-xl hover:shadow-red-500/10">
+            <div data-aos="fade-up" className="bg-white/5 rounded-xl p-8 border border-white/10 hover:border-red-400/30 transition-all duration-300 hover:shadow-xl hover:shadow-red-500/10">
               <Monitor className="w-12 h-12 text-red-400 mx-auto mb-4" />
               <h4 className="text-xl font-bold mb-3">Patient Management</h4>
               <p className="text-gray-300">Comprehensive patient tracking, care coordination, and health record management systems</p>
             </div>
             
-            <div className="bg-white/5 rounded-xl p-8 border border-white/10 hover:border-red-400/30 transition-all duration-300 hover:shadow-xl hover:shadow-red-500/10">
+            <div data-aos="fade-up" className="bg-white/5 rounded-xl p-8 border border-white/10 hover:border-red-400/30 transition-all duration-300 hover:shadow-xl hover:shadow-red-500/10">
               <Users className="w-12 h-12 text-red-400 mx-auto mb-4" />
               <h4 className="text-xl font-bold mb-3">Care Coordination</h4>
               <p className="text-gray-300">Seamless communication platforms connecting healthcare teams, patients, and specialists</p>
@@ -164,19 +164,19 @@ const HealthcareLandingPage = () => {
       <section className="py-16 bg-gradient-to-b from-gray-900 to-black">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-4 gap-8 text-center">
-            <div className="bg-white/5 rounded-xl p-6 border border-white/10 hover:border-red-400/30 transition-colors duration-300">
+            <div data-aos="fade-up" className="bg-white/5 rounded-xl p-6 border border-white/10 hover:border-red-400/30 transition-colors duration-300">
               <div className="text-3xl font-bold text-red-400 mb-2">85%</div>
               <div className="text-gray-300">Diagnostic Accuracy</div>
             </div>
-            <div className="bg-white/5 rounded-xl p-6 border border-white/10 hover:border-red-400/30 transition-colors duration-300">
+            <div data-aos="fade-up" className="bg-white/5 rounded-xl p-6 border border-white/10 hover:border-red-400/30 transition-colors duration-300">
               <div className="text-3xl font-bold text-red-400 mb-2">60%</div>
               <div className="text-gray-300">Faster Treatment</div>
             </div>
-            <div className="bg-white/5 rounded-xl p-6 border border-white/10 hover:border-red-400/30 transition-colors duration-300">
+            <div data-aos="fade-up" className="bg-white/5 rounded-xl p-6 border border-white/10 hover:border-red-400/30 transition-colors duration-300">
               <div className="text-3xl font-bold text-red-400 mb-2">40%</div>
               <div className="text-gray-300">Cost Reduction</div>
             </div>
-            <div className="bg-white/5 rounded-xl p-6 border border-white/10 hover:border-red-400/30 transition-colors duration-300">
+            <div data-aos="fade-up" className="bg-white/5 rounded-xl p-6 border border-white/10 hover:border-red-400/30 transition-colors duration-300">
               <div className="text-3xl font-bold text-red-400 mb-2">99.5%</div>
               <div className="text-gray-300">Patient Satisfaction</div>
             </div>
@@ -187,14 +187,14 @@ const HealthcareLandingPage = () => {
       {/* CTA Section */}
       <section className="py-20 bg-gradient-to-r from-red-900/20 via-black to-red-900/20">
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
+          <h2 data-aos="fade-up" className="text-4xl md:text-5xl font-bold mb-6">
             Transform <span className="text-red-400">Healthcare</span> Delivery
           </h2>
-          <p className="text-xl text-gray-300 mb-8 leading-relaxed">
+          <p data-aos="fade-up" className="text-xl text-gray-300 mb-8 leading-relaxed">
             Join innovative healthcare organizations that are revolutionizing patient care with 
             AI-powered medical solutions. Enhance your clinical outcomes and operational efficiency today.
           </p>
-          <button onClick={()=>{ window.location.href = "/Connect-with-us"}} className="group bg-red-600 hover:bg-red-700 text-white font-bold py-4 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-red-500/25">
+          <button data-aos="fade-up" onClick={()=>{ window.location.href = "/Connect-with-us"}} className="group cursor-pointer bg-red-600 hover:bg-red-700 text-white font-bold py-4 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-red-500/25">
             <span className="flex items-center gap-2">
               Revolutionize Patient Care
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />

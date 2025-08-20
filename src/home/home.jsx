@@ -6,7 +6,7 @@ import "aos/dist/aos.css";
 import Ourservices from './ourservices';
 import CountUp from 'react-countup';
 import AutomationSection from './Automation';
-import venkatesh from "./venkatesh.jpg"
+import venkatesh from "./quotes.jpg"
 import PartnersSection from './Partners';
 import Shedule from '../shedule/Shedule';
 
@@ -389,13 +389,9 @@ const [showPopup, setShowPopup] = useState(false);
                   “In the modern workplace, repetitive tasks like data entry and information retrieval
                   hinder employees from engaging in strategic and creative aspects of their roles.”
                 </p>
-                <p className="font-medium text-black">Venkatesh A</p>
-                <p className="text-gray-700 text-sm mb-6">CGO</p>
+                
 {/* "relative cursor-pointer inline-block px-6 py-3 font-medium group overflow-hidden border-2 border-red-500 text-white rounded bg-black hover:bg-red-500 transition-all duration-300 */}
-               <button className="bg-gradient-to-r cursor-pointer from-red-500 to-red-400 text-white font-semibold py-4 px-8 rounded-lg hover:from-red-600 hover:to-red-500 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-red-500/25 flex items-center space-x-2 mx-auto">
-                           <span>Get Started Today</span>
-                           {/* <ArrowRight className="w-5 h-5" /> */}
-                         </button>
+              
               </div>
             </div>
           </section>
